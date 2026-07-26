@@ -1,86 +1,95 @@
 # 🌟 Tran Cong Minh — Personal Portfolio
 
-<div align="center">
+[![Next.js](https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Three.js](https://img.shields.io/badge/Three.js-0.170-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
+[![Vitest](https://img.shields.io/badge/Vitest-2.1-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
 
-  ![Next.js](https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js&logoColor=white)
-  ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-  ![Three.js](https://img.shields.io/badge/Three.js-0.170-black?style=for-the-badge&logo=three.js&logoColor=white)
-  ![Vitest](https://img.shields.io/badge/Vitest-2.1-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)
-  ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Developer & Software Engineering Student at Ho Chi Minh City University of Industry.
 
-  <p align="center">
-    A modern, high-performance, interactive personal portfolio website built with <b>Next.js 15 (App Router)</b>, <b>React 19</b>, <b>TypeScript</b>, <b>Tailwind CSS</b>, and <b>Three.js</b>.
-  </p>
-
-  <a href="https://github.com/tcminh1405/trancongminh-portfolio"><strong>Explore GitHub Repo »</strong></a>
-</div>
+🔗 **Live GitHub Repository**: [https://github.com/tcminh1405/trancongminh-portfolio](https://github.com/tcminh1405/trancongminh-portfolio)
 
 ---
 
-## 📌 Overview
-
-This project is the personal portfolio website of **Tran Cong Minh**, a Software Engineering student and Full-Stack Developer based in Ho Chi Minh City, Vietnam. 
-
-It highlights personal achievements, work experience, technical skillset, featured full-stack projects, and provides an interactive contact form powered by Next.js Server Actions and Zod validation.
+## 📖 Table of Contents
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Featured Projects](#-featured-projects)
+- [Project Architecture](#-project-architecture)
+- [Getting Started](#-getting-started)
+- [Testing](#-testing)
+- [Contact](#-contact)
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-- 🎨 **Modern & Glassmorphism Aesthetic**: Rich dark/light themes with smooth gradients, responsive navigation, and glassmorphism visual components.
+- 🎨 **Modern UI/UX & Glassmorphism Design**: Custom dark and light themes with smooth glassmorphism containers and gradients.
 - 🌌 **Three.js Interactive Background**: Dynamic 3D interactive particle background canvas.
-- 🌓 **Seamless Dark/Light Mode**: Full theme customization powered by `next-themes` with zero SSR hydration mismatch (`ClientOnly` wrapper).
-- 🚀 **Featured Projects Showcase**: Highlighted enterprise & full-stack projects (TechShop Microservices, Real-time Messaging & Call Ecosystem) with technology badges and repository links.
-- 📊 **Categorized Skills Matrix**: Interactive skill bars and technology badges grouped by Frontend, Backend, and DevOps & Tools.
-- ⏳ **Interactive Career Timeline**: Structured timeline for work experience and education.
-- ✉️ **Contact Form with Server Actions**: Validated using **Zod** schema and processed with **Next.js Server Actions** for secure message submission.
-- 🧪 **Unit Testing Framework**: Integrated **Vitest** testing setup for utility functions.
-- ⚡ **Optimized Performance & SEO**: Built with Next.js App Router for optimal page load speed, meta tags, and accessibility.
+- 🌓 **Dark & Light Mode Toggle**: Powered by `next-themes` with zero SSR hydration mismatch (`ClientOnly` wrapper).
+- 📱 **Fully Responsive Layout**: Mobile-first design optimized for desktop, tablet, and mobile devices.
+- 💼 **Projects Showcase**: Interactive project cards displaying backend/full-stack projects with technology badges, descriptions, and GitHub links.
+- 🛠️ **Categorized Skills Matrix**: Interactive skill bars and technology badges grouped by Frontend, Backend, and DevOps & Tools.
+- ⏳ **Experience & Education Timeline**: Interactive career milestones timeline.
+- ✉️ **Contact Form**: Form handling with Zod validation schema and Next.js Server Actions.
+- 🧪 **Automated Testing**: Integrated Vitest unit tests for core utilities.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Core & Frameworks
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
-- **Library**: [React 19](https://react.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **3D / Graphics**: [Three.js](https://threejs.org/) & `@react-three/fiber`
-- **Icons**: [React Icons](https://react-icons.github.io/react-icons/) & [Lucide React](https://lucide.dev/)
-
-### Data Validation & Testing
-- **Validation**: [Zod](https://zod.dev/)
-- **Testing**: [Vitest](https://vitest.dev/)
+| Domain | Technologies |
+| --- | --- |
+| **Core Framework** | Next.js 15 (App Router), React 19, TypeScript |
+| **Styling & UI** | Tailwind CSS, Custom CSS Variables, Glassmorphism |
+| **3D & Animations** | Three.js, Canvas Animations, Intersection Observer |
+| **Form & Validation** | Next.js Server Actions, Zod Schema Validation |
+| **State & Theme** | next-themes, Custom Hooks (`useMounted`) |
+| **Testing & Tooling** | Vitest, ESLint, PostCSS, Git |
 
 ---
 
-## 📁 Project Structure
+## 🚀 Featured Projects
+
+### 1. 🛒 TechShop — E-Commerce Platform
+Distributed e-commerce platform architected with Java 17, Spring Boot 3.x, Spring Cloud (11 decoupled services), Kafka KRaft, Transactional Outbox, Saga Choreography, Redis, Docker, and Nginx.
+- **Technologies**: Java 17, Spring Boot, Spring Cloud, Kafka, Redis, MySQL, Docker, Nginx, Grafana k6, ReactJS
+- **GitHub**: [https://github.com/tcminh1405/TechShopProject](https://github.com/tcminh1405/TechShopProject)
+
+### 2. 💬 Real-time Messaging & Call Ecosystem
+Fullstack real-time messaging & communication platform supporting instant chat with Socket.io, 1:1 audio/video calls with WebRTC, notifications, friend management, and event scheduling.
+- **Technologies**: Node.js, TypeScript, Socket.io, WebRTC, PostgreSQL, MongoDB, AWS, Docker, ReactJS, React Native, Tailwind CSS
+- **GitHub**: [https://github.com/tcminh1405/OTT_EducationProject](https://github.com/tcminh1405/OTT_EducationProject)
+
+---
+
+## 📁 Project Architecture
 
 ```text
 trancongminh-portfolio/
 ├── public/
-│   ├── assets/
-│   │   ├── images/          # Profile image assets
-│   │   ├── logo/            # Branding logos
-│   │   ├── project/         # Project preview screenshots
-│   │   └── resume/          # Resume PDF document
+│   └── assets/
+│       ├── images/          # Profile image assets
+│       ├── logo/            # Branding logos
+│       ├── project/         # Project preview screenshots
+│       └── resume/          # Resume PDF document
 ├── src/
-│   ├── app/                 # Next.js App Router (Layouts, Pages, Server Actions)
-│   │   ├── actions/         # Contact form Server Actions
-│   │   ├── globals.css      # Custom styling & Tailwind directives
+│   ├── app/
+│   │   ├── actions/         # Contact form Server Actions (contact.ts)
+│   │   ├── globals.css      # Custom styling & CSS variables
 │   │   ├── layout.tsx       # Root layout & providers
 │   │   └── page.tsx         # Main portfolio page
-│   ├── components/          # React components
-│   │   ├── layout/          # Header, Footer, ThemeProvider, ClientOnly wrappers
+│   ├── components/
+│   │   ├── layout/          # Header, Footer, ThemeProvider, ClientOnly
 │   │   ├── sections/        # Hero, About, Skills, Experience, Projects, Contact
-│   │   └── ui/              # Buttons, Cards, Badges, ThreeBackground, Modals
+│   │   └── ui/              # Buttons, Cards, Badges, ThreeBackground, ScrollToTop
 │   ├── data/                # Portfolio datasets (personal, skills, projects, experience)
-│   ├── hooks/               # Custom React hooks (useMounted, etc.)
-│   ├── lib/                 # Utility helpers & Zod validation schemas
+│   ├── hooks/               # Custom React hooks (useMounted)
+│   ├── lib/                 # Utility functions & Zod validations
 │   └── types/               # TypeScript interfaces & types
-├── vitest.config.ts         # Vitest test configuration
+├── vitest.config.ts         # Vitest test runner configuration
 ├── next.config.ts           # Next.js configuration
 ├── tailwind.config.ts       # Tailwind CSS configuration
 └── tsconfig.json            # TypeScript compiler configuration
@@ -88,68 +97,56 @@ trancongminh-portfolio/
 
 ---
 
-## 🚀 Getting Started
+## ⚙️ Getting Started
 
 ### Prerequisites
-Make sure you have **Node.js 18+** or **20+** installed on your system.
+- Node.js 18.0.0 or higher
+- npm 9.0.0 or higher
 
-### 1. Clone the Repository
-```bash
-git clone https://github.com/tcminh1405/trancongminh-portfolio.git
-cd trancongminh-portfolio
-```
+### Installation
 
-### 2. Install Dependencies
-```bash
-npm install
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/tcminh1405/trancongminh-portfolio.git
+   cd trancongminh-portfolio
+   ```
 
-### 3. Configure Environment Variables
-Copy `.env.local.example` to `.env.local`:
-```bash
-cp .env.local.example .env.local
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### 4. Run Development Server
-```bash
-npm run dev
-```
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
+3. **Configure Environment Variables**
+   ```bash
+   cp .env.local.example .env.local
+   ```
+
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ---
 
-## 🧪 Running Tests
+## 🧪 Testing
 
-To run the unit test suite with Vitest:
+Run the Vitest unit tests:
 ```bash
 npm run test
 ```
 
----
-
-## 🔨 Production Build
-
-To generate the production build:
+Build for production:
 ```bash
 npm run build
 ```
 
-To start the production server:
-```bash
-npm start
-```
-
 ---
 
-## 📬 Contact & Connect
+## 📬 Contact
 
-- **Author**: Tran Cong Minh
+- **Name**: Tran Cong Minh
+- **Role**: Full-Stack Developer
 - **Email**: [tcminh1405@gmail.com](mailto:tcminh1405@gmail.com)
-- **GitHub**: [@tcminh1405](https://github.com/tcminh1405)
-- **LinkedIn**: [Tran Cong Minh](https://linkedin.com/in/kyungminn)
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by Tran Cong Minh</sub>
-</div>
+- **GitHub**: [github.com/tcminh1405](https://github.com/tcminh1405)
+- **LinkedIn**: [linkedin.com/in/kyungminn](https://linkedin.com/in/kyungminn)

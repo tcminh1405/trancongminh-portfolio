@@ -11,5 +11,5 @@ export const personal: PersonalInfo = {
   phone: undefined,
   github: "https://github.com/tcminh1405",
   linkedin: "https://linkedin.com/in/kyungminn",
-  resumeUrl: "/assets/resume/TranHuuDat-Resume-Summary-2025.pdf",
+  resumeUrl: "/assets/resume/TranCongMinh_Backend Intern.pdf",
 };
