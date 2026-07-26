@@ -1,22 +1,26 @@
-# 🌟 Tran Cong Minh — Personal Portfolio
+# 🌌 Tran Cong Minh — Personal Portfolio
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.1-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![Three.js](https://img.shields.io/badge/Three.js-0.170-black?style=for-the-badge&logo=three.js&logoColor=white)](https://threejs.org/)
-[![Vitest](https://img.shields.io/badge/Vitest-2.1-6E9F18?style=for-the-badge&logo=vitest&logoColor=white)](https://vitest.dev/)
+<p align="center">
+  <a href="https://www.tcminh1405.id.vn/"><img src="https://img.shields.io/badge/Live_Website-tcminh1405.id.vn-2563EB?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Website"/></a>
+  <a href="https://nextjs.org/"><img src="https://img.shields.io/badge/Next.js-16.2-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js"/></a>
+  <a href="https://react.dev/"><img src="https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/></a>
+  <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"/></a>
+  <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS-4.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS"/></a>
+  <a href="https://threejs.org/"><img src="https://img.shields.io/badge/Three.js-0.185-black?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/></a>
+</p>
 
 Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Developer & Software Engineering Student at Ho Chi Minh City University of Industry.
 
-🔗 **Live GitHub Repository**: [https://github.com/tcminh1405/trancongminh-portfolio](https://github.com/tcminh1405/trancongminh-portfolio)
+🌐 **Live Website**: [https://www.tcminh1405.id.vn](https://www.tcminh1405.id.vn/)  
+🔗 **GitHub Repository**: [https://github.com/tcminh1405/trancongminh-portfolio](https://github.com/tcminh1405/trancongminh-portfolio)
 
 ---
 
 ## 📖 Table of Contents
+- [Overview](#-overview)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
-- [Featured Projects](#-featured-projects)
+- [Project Showcase](#-project-showcase)
 - [Project Architecture](#-project-architecture)
 - [Getting Started](#-getting-started)
 - [Testing](#-testing)
@@ -24,7 +28,15 @@ Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Develope
 
 ---
 
-## ✨ Features
+## 📌 Overview
+
+This repository contains the source code for the personal portfolio web application of **Tran Cong Minh** — Software Engineer & Full-Stack Developer. 
+
+Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Three.js**, this web application features a modern glassmorphism design system, theme-aware 3D particle and space canvases, responsive layouts, and server-side form handling with Zod validation and email notifications.
+
+---
+
+## 🎨 Features
 
 - 🎨 **Modern UI/UX & Glassmorphism Design**: Custom dark and light themes with smooth glassmorphism containers and gradients.
 - 🌌 **Three.js Interactive Background**: Dynamic 3D interactive particle background canvas.
@@ -42,26 +54,22 @@ Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Develope
 
 | Domain | Technologies |
 | --- | --- |
-| **Core Framework** | Next.js 15 (App Router), React 19, TypeScript |
-| **Styling & UI** | Tailwind CSS, Custom CSS Variables, Glassmorphism |
-| **3D & Animations** | Three.js, Canvas Animations, Intersection Observer |
-| **Form & Validation** | Next.js Server Actions, Zod Schema Validation |
+| **Core Framework** | Next.js 16 (App Router), React 19, TypeScript |
+| **Styling & UI** | Tailwind CSS v4, Custom CSS Variables, Glassmorphism |
+| **3D & Animations** | Three.js, Framer Motion, Canvas Animations |
+| **Form & Email** | Next.js Server Actions, Resend API, Zod Validation |
 | **State & Theme** | next-themes, Custom Hooks (`useMounted`) |
 | **Testing & Tooling** | Vitest, ESLint, PostCSS, Git |
 
 ---
 
-## 🚀 Featured Projects
+## 🚀 Project Showcase
 
-### 1. 🛒 TechShop — E-Commerce Platform
-Distributed e-commerce platform architected with Java 17, Spring Boot 3.x, Spring Cloud (11 decoupled services), Kafka KRaft, Transactional Outbox, Saga Choreography, Redis, Docker, and Nginx.
-- **Technologies**: Java 17, Spring Boot, Spring Cloud, Kafka, Redis, MySQL, Docker, Nginx, Grafana k6, ReactJS
-- **GitHub**: [https://github.com/tcminh1405/TechShopProject](https://github.com/tcminh1405/TechShopProject)
-
-### 2. 💬 Real-time Messaging & Call Ecosystem
-Fullstack real-time messaging & communication platform supporting instant chat with Socket.io, 1:1 audio/video calls with WebRTC, notifications, friend management, and event scheduling.
-- **Technologies**: Node.js, TypeScript, Socket.io, WebRTC, PostgreSQL, MongoDB, AWS, Docker, ReactJS, React Native, Tailwind CSS
-- **GitHub**: [https://github.com/tcminh1405/OTT_EducationProject](https://github.com/tcminh1405/OTT_EducationProject)
+| Project | Type | Key Architecture & Description | Tech Stack | Links |
+| --- | --- | --- | --- | --- |
+| **🛒 TechShop** | E-Commerce | Distributed Microservices platform (11 services) with Kafka KRaft event-driven architecture, Outbox & Saga pattern, Redis caching & Nginx (stress-tested at 12k req/s). | Java 17, Spring Boot, Spring Cloud, Kafka, Redis, MySQL, Docker, Nginx, Grafana k6, ReactJS | [GitHub Repo](https://github.com/tcminh1405/TechShopProject) |
+| **💬 Real-Time Messaging** | Communication | Enterprise messaging & WebRTC video call ecosystem with Socket.io duplex messaging, polyglot persistence (PostgreSQL & MongoDB), Web & Mobile. | Node.js, TypeScript, Socket.io, WebRTC, PostgreSQL, MongoDB, AWS, Docker, ReactJS, React Native | [GitHub Repo](https://github.com/tcminh1405/OTT_EducationProject) |
+| **🌟 Tran Cong Minh Portfolio** | Personal Web | Interactive 3D universe canvas, 360° rotatable 3D planet with mouse/touch drag, Framer Motion animations, Next.js Server Actions & Resend email API. | Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js, Framer Motion, Resend | [Live Demo](https://www.tcminh1405.id.vn/)<br>[GitHub Repo](https://github.com/tcminh1405/trancongminh-portfolio) |
 
 ---
 
@@ -145,8 +153,8 @@ npm run build
 
 ## 📬 Contact
 
-- **Name**: Tran Cong Minh
-- **Role**: Full-Stack Developer
+Have a project in mind or want to collaborate?
+- **Website**: [tcminh1405.id.vn](https://www.tcminh1405.id.vn/)
 - **Email**: [tcminh1405@gmail.com](mailto:tcminh1405@gmail.com)
 - **GitHub**: [github.com/tcminh1405](https://github.com/tcminh1405)
 - **LinkedIn**: [linkedin.com/in/kyungminn](https://linkedin.com/in/kyungminn)
