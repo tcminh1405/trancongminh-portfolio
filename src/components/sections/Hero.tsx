@@ -88,7 +88,7 @@ export default function Hero() {
                   objectFit: "cover",
                   border: "2px solid transparent",
                   backgroundClip: "padding-box",
-                  boxShadow: "0 0 0 2px #a855f7, 0 0 12px rgba(168,85,247,0.4)",
+                  boxShadow: "0 0 0 2px var(--accent-blue), 0 0 12px rgba(72,139,251,0.4)",
                   width: 72,
                   height: 72,
                 }}
@@ -215,8 +215,8 @@ export default function Hero() {
                 onMouseEnter={(e) => {
                   const el = e.currentTarget as HTMLAnchorElement;
                   el.style.color = "var(--text-primary)";
-                  el.style.background = isDark ? "rgba(168,85,247,0.1)" : "rgba(14,165,233,0.12)";
-                  el.style.borderColor = isDark ? "#a855f7" : "#0ea5e9";
+                  el.style.background = isDark ? "rgba(72,139,251,0.12)" : "rgba(57,111,200,0.12)";
+                  el.style.borderColor = isDark ? "var(--accent-blue)" : "var(--border-color)";
                 }}
                 onMouseLeave={(e) => {
                   const el = e.currentTarget as HTMLAnchorElement;

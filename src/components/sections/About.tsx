@@ -79,7 +79,7 @@ export default function About() {
                 Hello, I'm {personal.name}
               </h3>
               <p style={{
-                background: "linear-gradient(135deg, #a855f7, #0ea5e9)",
+                background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",

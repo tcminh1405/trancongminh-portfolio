@@ -77,7 +77,7 @@ export default function SkillBar({ skill }: SkillBarProps) {
             <span
               style={{
                 width: 24, height: 24, borderRadius: "50%",
-                background: "linear-gradient(135deg, rgba(168,85,247,0.2), rgba(14,165,233,0.2))",
+                background: "linear-gradient(135deg, rgba(72,139,251,0.2), rgba(14,165,233,0.2))",
                 display: "flex", alignItems: "center", justifyContent: "center",
                 fontSize: "0.7rem", fontWeight: "bold",
                 color: "#38bdf8", flexShrink: 0,
@@ -107,7 +107,7 @@ export default function SkillBar({ skill }: SkillBarProps) {
           style={{
             height: "100%",
             width: animated ? `${percentage}%` : "0%",
-            background: "linear-gradient(to right, #a855f7, #0ea5e9, #a855f7)",
+            background: "linear-gradient(to right, var(--accent-purple), var(--accent-blue), var(--accent-purple))",
             backgroundSize: "200% 100%",
             borderRadius: "9999px",
             transition: "width 1.5s cubic-bezier(0.25,1,0.5,1)",

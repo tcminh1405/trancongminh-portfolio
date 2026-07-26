@@ -76,8 +76,8 @@ export default function ThreeBackground() {
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
-    const c1 = isDark ? new THREE.Color("#a855f7") : new THREE.Color("#6d28d9"); // Purple / Violet
-    const c2 = isDark ? new THREE.Color("#38bdf8") : new THREE.Color("#1d4ed8"); // Sky Blue / Deep Blue
+    const c1 = isDark ? new THREE.Color("#155dfc") : new THREE.Color("#132139"); // Royal Blue / Dark Navy
+    const c2 = isDark ? new THREE.Color("#488bfb") : new THREE.Color("#396fc8"); // Accent Sky Blue / Accent Medium Blue
 
     // Setup Points Geometry
     const pointsGeometry = new THREE.BufferGeometry();

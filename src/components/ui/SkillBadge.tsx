@@ -27,7 +27,7 @@ export default function SkillBadge({ skill }: SkillBadgeProps) {
             display: "flex", width: 16, height: 16, flexShrink: 0,
             alignItems: "center", justifyContent: "center",
             borderRadius: "50%",
-            background: "linear-gradient(135deg, rgba(168,85,247,0.2), rgba(14,165,233,0.2))",
+            background: "linear-gradient(135deg, rgba(72,139,251,0.2), rgba(14,165,233,0.2))",
             fontSize: "0.6rem", fontWeight: "bold", color: "#38bdf8",
           }}
         >

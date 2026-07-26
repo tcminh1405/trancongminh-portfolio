@@ -116,7 +116,7 @@ export default function Contact() {
 
               {/* Email */}
               <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.5rem" }}>
-                <span style={{ background: "linear-gradient(135deg, #a855f7, #0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
+                <span style={{ background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
                   <FaEnvelope />
                 </span>
                 <div>
@@ -124,7 +124,7 @@ export default function Contact() {
                   <a
                     href={`mailto:${personal.email}`}
                     style={{ color: "var(--text-primary)", textDecoration: "none", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#0ea5e9")}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-blue)")}
                     onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
                   >
                     {personal.email}
@@ -134,7 +134,7 @@ export default function Contact() {
 
               {/* LinkedIn */}
               <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.5rem" }}>
-                <span style={{ background: "linear-gradient(135deg, #a855f7, #0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
+                <span style={{ background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
                   <FaLinkedin />
                 </span>
                 <div>
@@ -144,7 +144,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: "var(--text-primary)", textDecoration: "none", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#0ea5e9")}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-blue)")}
                     onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
                   >
                     {personal.linkedin.replace("https://", "")}
@@ -154,7 +154,7 @@ export default function Contact() {
 
               {/* GitHub */}
               <div style={{ display: "flex", alignItems: "flex-start", gap: "1rem", marginBottom: "1.5rem" }}>
-                <span style={{ background: "linear-gradient(135deg, #a855f7, #0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
+                <span style={{ background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text", marginTop: 2, flexShrink: 0, fontSize: "1.25rem", display: "inline-flex" }}>
                   <FaGithub />
                 </span>
                 <div>
@@ -164,7 +164,7 @@ export default function Contact() {
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{ color: "var(--text-primary)", textDecoration: "none", transition: "color 0.2s" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#a855f7")}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-blue)")}
                     onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
                   >
                     {personal.github.replace("https://", "")}

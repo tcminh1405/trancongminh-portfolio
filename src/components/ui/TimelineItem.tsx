@@ -17,12 +17,12 @@ export default function TimelineItem({ item }: TimelineItemProps) {
       <div className="absolute left-[11px] top-0 bottom-0 w-px bg-[rgba(255,255,255,0.1)]" />
 
       {/* Chấm tròn — viền xanh */}
-      <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-[3px] border-[#a855f7] z-10" style={{ background: "var(--bg-dark)" }} />
+      <div className="absolute left-0 top-1 w-6 h-6 rounded-full border-[3px] z-10" style={{ borderColor: "var(--accent-blue)", background: "var(--bg-dark)" }} />
 
       {/* Nội dung */}
       <div className="glass-card p-5">
         {/* Ngày tháng */}
-        <span className="accent-label text-xs mb-2 block" style={{ background: "linear-gradient(to right, #a855f7, #0ea5e9)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+        <span className="accent-label text-xs mb-2 block" style={{ background: "linear-gradient(to right, var(--accent-purple), var(--accent-blue))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
           {dateRange}
         </span>
 

@@ -91,10 +91,10 @@ export default function Header() {
     zIndex: 999,
     width: "90%",
     maxWidth: "1400px",
-    background: isDark ? "rgba(10, 15, 30, 0.88)" : "rgba(255, 255, 255, 0.88)",
+    background: isDark ? "rgba(9, 14, 17, 0.88)" : "rgba(248, 248, 249, 0.88)",
     backdropFilter: "blur(14px)",
     WebkitBackdropFilter: "blur(14px)",
-    border: isDark ? "1px solid rgba(168, 85, 247, 0.2)" : "1px solid rgba(0, 0, 0, 0.1)",
+    border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
     borderRadius: "9999px",
     padding: isMobile ? "0.6rem 1rem" : "0.75rem 2rem",
     display: "flex",
@@ -131,7 +131,7 @@ export default function Header() {
           left: 0,
           height: "8px",
           width: `${progress}%`,
-          background: "linear-gradient(to right, #a855f7, #0ea5e9)",
+          background: "linear-gradient(to right, var(--accent-purple), var(--accent-blue))",
           zIndex: 1000,
           transition: "width 0.1s linear",
         }}
@@ -160,7 +160,7 @@ export default function Header() {
                   bottom: 0,
                   left: 0,
                   height: "100%",
-                  background: isDark ? "rgba(168,85,247,0.12)" : "rgba(0,0,0,0.05)",
+                  background: isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0, 0, 0, 0.05)",
                   borderRadius: "9999px",
                   zIndex: 0,
                   transition: "all 0.5s cubic-bezier(0.23,1,0.32,1)",
@@ -211,21 +211,21 @@ export default function Header() {
                 display: "grid",
                 placeItems: "center",
                 borderRadius: "50%",
-                border: isDark ? "1px solid rgba(168,85,247,0.2)" : "1px solid rgba(0,0,0,0.1)",
+                border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0,0,0,0.1)",
                 transition: "color 0.2s, border-color 0.2s, background 0.2s",
                 flexShrink: 0,
                 textDecoration: "none",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = isDark ? "#a855f7" : "#000";
-                el.style.borderColor = isDark ? "#a855f7" : "#000";
-                el.style.background = isDark ? "rgba(168,85,247,0.1)" : "rgba(0,0,0,0.05)";
+                el.style.color = isDark ? "var(--accent-blue)" : "#000";
+                el.style.borderColor = isDark ? "var(--accent-blue)" : "#000";
+                el.style.background = isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0,0,0,0.05)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
                 el.style.color = isDark ? "#94a3b8" : "#52525b";
-                el.style.borderColor = isDark ? "rgba(168,85,247,0.2)" : "rgba(0,0,0,0.1)";
+                el.style.borderColor = isDark ? "var(--border-color)" : "rgba(0,0,0,0.1)";
                 el.style.background = "transparent";
               }}
             >
@@ -270,9 +270,9 @@ export default function Header() {
               zIndex: 998,
               overflow: "hidden",
               borderRadius: "1.5rem",
-              background: isDark ? "rgba(10,15,30,0.96)" : "rgba(255,255,255,0.96)",
+              background: isDark ? "rgba(9, 14, 17, 0.96)" : "rgba(248, 248, 249, 0.96)",
               backdropFilter: "blur(14px)",
-              border: isDark ? "1px solid rgba(168,85,247,0.2)" : "1px solid rgba(0,0,0,0.1)",
+              border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
             }}
           >
             <nav style={{ display: "flex", flexDirection: "column", padding: "1rem", gap: "0.25rem" }}>

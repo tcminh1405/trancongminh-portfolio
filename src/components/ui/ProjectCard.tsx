@@ -67,13 +67,13 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               aria-label={`Demo live của ${title}`}
               className="inline-flex items-center gap-1.5 text-sm font-medium transition-opacity hover:opacity-80"
               style={{
-                background: "linear-gradient(135deg, #a855f7, #0ea5e9)",
+                background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
               }}
             >
-              <FaExternalLinkAlt size={12} aria-hidden="true" style={{ color: "#0ea5e9" }} />
+              <FaExternalLinkAlt size={12} aria-hidden="true" style={{ color: "var(--accent-blue)" }} />
               Live Demo
             </a>
           )}
