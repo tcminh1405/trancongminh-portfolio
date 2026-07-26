@@ -1,13 +1,11 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useIsMounted } from "@/hooks/useMounted";
 
 export default function Logo({ className }: { className?: string }) {
   const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
+  const mounted = useIsMounted();
 
   const isDark = mounted ? resolvedTheme !== "light" : true;
 

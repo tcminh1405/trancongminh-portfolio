@@ -116,7 +116,7 @@ export default function Projects() {
                           marginBottom: "0.35rem",
                         }}
                       >
-                        Technologies:
+                        TECHNOLOGIES
                       </span>
                       <div
                         style={{
@@ -128,15 +128,7 @@ export default function Projects() {
                         {project.techs.map((tech) => (
                           <span
                             key={tech}
-                            style={{
-                              background: "rgba(168, 85, 247, 0.08)",
-                              color: "var(--text-primary)",
-                              border: "1px solid rgba(168, 85, 247, 0.2)",
-                              padding: "0.2rem 0.6rem",
-                              borderRadius: "9999px",
-                              fontSize: "0.75rem",
-                              fontWeight: 500,
-                            }}
+                            className="project-tech-badge"
                           >
                             {tech}
                           </span>
@@ -159,15 +151,9 @@ export default function Projects() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-secondary"
-                          style={{
-                            padding: "0.45rem 1.1rem",
-                            fontSize: "0.825rem",
-                            borderRadius: "9999px",
-                            gap: "0.5rem",
-                          }}
+                          className="project-btn-code"
                         >
-                          <FaGithub size={16} /> GitHub Repository
+                          <FaGithub size={16} /> Code
                         </a>
                       )}
                       {project.demoUrl && (
@@ -175,15 +161,9 @@ export default function Projects() {
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="btn btn-primary"
-                          style={{
-                            padding: "0.45rem 1.1rem",
-                            fontSize: "0.825rem",
-                            borderRadius: "9999px",
-                            gap: "0.5rem",
-                          }}
+                          className="project-btn-demo"
                         >
-                          Live Demo <FiExternalLink size={16} />
+                          <FiExternalLink size={16} /> Live Demo
                         </a>
                       )}
                     </div>

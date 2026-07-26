@@ -6,6 +6,8 @@
 
 import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import { personal } from "@/data/personal";
+import Link from "next/link";
+import Logo from "../ui/Logo";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -32,17 +34,10 @@ export default function Footer() {
                 marginBottom: "1rem",
               }}
             >
-              <span
-                style={{
-                  background: "linear-gradient(to right, #a855f7, #0ea5e9)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                TCM
-              </span>
-              <span style={{ color: "var(--text-primary)", fontSize: "0.85rem", fontWeight: 400, marginLeft: "0.4rem", opacity: 0.6 }}>Portfolio</span>
+              {/* Logo — SVG */}
+              <Link href="#hero" style={{ textDecoration: "none", flexShrink: 0, display: "flex", alignItems: "center" }} suppressHydrationWarning>
+                <Logo />
+              </Link>
             </h3>
             <p style={{ maxWidth: "300px", lineHeight: 1.7, fontSize: "0.9rem" }}>
               A passionate Web Developer dedicated to building beautiful and useful applications.
@@ -63,10 +58,10 @@ export default function Footer() {
             </h4>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {[
-                { href: "#hero",     label: "Home" },
+                { href: "#hero", label: "Home" },
                 { href: personal.resumeUrl, label: "Resume", external: true },
                 { href: "#projects", label: "Projects" },
-                { href: "#contact",  label: "Contact" },
+                { href: "#contact", label: "Contact" },
               ].map(({ href, label, external }) => (
                 <li key={label} style={{ marginBottom: "0.75rem" }}>
                   <a

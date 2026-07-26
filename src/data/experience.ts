@@ -20,8 +20,8 @@ export const experience: ExperienceItem[] = [
   }, {
     company: "Full-stack Developer",
     position: "Real-time Messaging & Communication Platform",
-    startDate: "Nov 2025",
-    endDate: "Dec 2025",
+    startDate: "Mar 2026",
+    endDate: "Jun 2026",
     description:
       "Real-time messaging platform with private and group chat, message history, user authentication, using modern web technologies.",
     order: 2,

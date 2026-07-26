@@ -44,7 +44,7 @@ export default function Experience() {
 
             return (
               <ScrollAnimation
-                key={`${item.company}-${item.startDate}`}
+                key={`${item.company}-${item.startDate}-${index}`}
                 direction="up"
                 delay={index * 0.15}
               >
