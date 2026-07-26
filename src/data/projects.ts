@@ -21,5 +21,15 @@ export const projects: ProjectData[] = [
     demoUrl: "https://github.com/tcminh1405/OTT_EducationProject", // Thêm placeholder để hiển thị nút Live Demo
     githubUrl: "https://github.com/tcminh1405/OTT_EducationProject",
   },
+  {
+    id: "portfolio",
+    title: "Tran Cong Minh — Interactive Portfolio",
+    description:
+      "Personal portfolio web application featuring interactive 3D space animations, 360° rotatable 3D planet canvas, glassmorphic UI elements, dark/light theme switching, and Server Actions.",
+    image: "/assets/project/home_portfolio.png",
+    techs: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Three.js", "Framer Motion", "Resend API"],
+    demoUrl: "https://www.tcminh1405.id.vn/",
+    githubUrl: "https://github.com/tcminh1405/trancongminh-portfolio",
+  },
 ];
 
