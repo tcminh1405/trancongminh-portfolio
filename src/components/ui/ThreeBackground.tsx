@@ -396,7 +396,7 @@ export default function ThreeBackground() {
 
       renderer.dispose();
     };
-  }, [isDark]);
+  }, [isDark, mounted]);
 
   if (!mounted) {
     return (
