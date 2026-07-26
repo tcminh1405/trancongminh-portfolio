@@ -68,8 +68,8 @@ export default function Contact() {
   }, [state.timestamp, state.status, state.message, state.errors]);
 
   return (
-    <section id="contact" className="content-section">
-      {/* ── Top-Center Animated Toast Notification ── */}
+    <>
+      {/* ── Top-Center Animated Toast Notification — outside section to avoid stacking context ── */}
       <AnimatePresence>
         {showToast && (
           <motion.div
@@ -95,6 +95,7 @@ export default function Contact() {
           </motion.div>
         )}
       </AnimatePresence>
+      <section id="contact" className="content-section">
 
       <div className="container">
 
@@ -283,5 +284,6 @@ export default function Contact() {
         </div>
       </div>
     </section>
+    </>
   );
 }
