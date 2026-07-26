@@ -76,7 +76,7 @@ export default function About() {
           <ScrollAnimation direction="right">
             <div>
               <h3 style={{ color: "var(--text-primary)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "0.5rem" }}>
-                Hello, I'm {personal.name}
+                Hello, I&apos;m {personal.name}
               </h3>
               <p style={{
                 background: "linear-gradient(135deg, var(--accent-purple), var(--accent-blue))",
