@@ -18,12 +18,12 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trancongminh.dev"),
+  metadataBase: new URL("https://www.tcminh1405.id.vn/"),
   title: "Trần Công Minh Portfolio | Software Engineer",
   description:
     "Portfolio của Trần Công Minh — Full Stack Developer với kinh nghiệm React, Next.js, Node.js. Xem các dự án và liên hệ hợp tác.",
   keywords: [
-    "portfolio", "developer", "React", "Next.js",
+    "portfolio", "developer", "React", "Next.js", "Java", "Typescript", "RESTful API", "Spring Boot",
     "Full Stack", "Vietnam", "Trần Công Minh",
   ],
   icons: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     title: "Trần Công Minh | Full Stack Developer",
     description:
       "Portfolio của Trần Công Minh — Full Stack Developer với kinh nghiệm React, Next.js, Node.js.",
-    url: "https://trancongminh.dev",
+    url: "https://www.tcminh1405.id.vn/",
     type: "website",
     images: [{ url: "/assets/banner.png", width: 1200, height: 630, alt: "TCM Portfolio Banner" }],
   },
