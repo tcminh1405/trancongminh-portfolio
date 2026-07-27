@@ -56,8 +56,17 @@ export default function Footer() {
   useEffect(() => {
     if (!mounted) return;
     const timer = setTimeout(() => {
-      // 1. Register active online session
-      fetch("https://api.counterapi.dev/v1/trancongminh-portfolio/online/up")
+      // 1. Register active online session (NO increment on F5 refresh)
+      const isTabAlreadyOnline = sessionStorage.getItem("portfolio_tab_online");
+      const onlineUrl = isTabAlreadyOnline
+        ? "https://api.counterapi.dev/v1/trancongminh-portfolio/online"
+        : "https://api.counterapi.dev/v1/trancongminh-portfolio/online/up";
+
+      if (!isTabAlreadyOnline) {
+        sessionStorage.setItem("portfolio_tab_online", "true");
+      }
+
+      fetch(onlineUrl)
         .then((res) => (res.ok ? res.json() : null))
         .then((data) => {
           if (data && typeof data.count === "number") {
