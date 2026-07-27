@@ -10,51 +10,63 @@ export default function Logo({ className }: { className?: string }) {
   const isDark = mounted ? resolvedTheme !== "light" : true;
 
   return (
-    <svg 
-      viewBox="-140 0 820 230" 
-      height="65" 
+    <svg
+      viewBox="-140 0 820 230"
+      height="65"
       style={{ overflow: 'visible', cursor: 'pointer' }}
       className={`logo-svg ${className || ''}`}
     >
       <defs>
         <linearGradient id="logoBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#00d2ff" />
+          <stop offset="0%" stopColor="#38bdf8" />
           <stop offset="100%" stopColor="#2563eb" />
+        </linearGradient>
+        <linearGradient id="logoHoverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#60a5fa" />
+          <stop offset="50%" stopColor="#38bdf8" />
+          <stop offset="100%" stopColor="#a855f7" />
         </linearGradient>
         <linearGradient id="logoSilverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="100%" stopColor="#94a3b8" />
+          <stop offset="100%" stopColor="#cbd5e1" />
         </linearGradient>
         <linearGradient id="logoBlackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#334155" />
-          <stop offset="100%" stopColor="#020617" />
+          <stop offset="0%" stopColor="#1e293b" />
+          <stop offset="100%" stopColor="#0f172a" />
         </linearGradient>
       </defs>
       <style>
         {`
+          .logo-svg {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s ease;
+          }
+          .logo-svg:hover {
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
+          }
           .name-text {
             fill: ${isDark ? 'url(#logoSilverGrad)' : 'url(#logoBlackGrad)'};
-            transition: fill 0.3s ease;
+            transition: fill 0.35s ease, opacity 0.35s ease;
           }
           .logo-svg:hover .name-text {
-            fill: url(#logoBlueGrad);
+            fill: url(#logoHoverGrad);
           }
           .tech-accent {
             stroke: url(#logoBlueGrad);
             stroke-linecap: round;
             stroke-linejoin: round;
             fill: none;
-            transition: stroke 0.3s ease;
+            transition: stroke 0.35s ease, opacity 0.35s ease;
           }
           .logo-svg:hover .tech-accent {
-            stroke: ${isDark ? 'url(#logoSilverGrad)' : 'url(#logoBlackGrad)'};
+            stroke: ${isDark ? '#60a5fa' : '#2563eb'};
           }
           .tech-dot {
             fill: url(#logoBlueGrad);
-            transition: fill 0.3s ease;
+            transition: fill 0.35s ease, transform 0.35s ease;
           }
           .logo-svg:hover .tech-dot {
-            fill: ${isDark ? 'url(#logoSilverGrad)' : 'url(#logoBlackGrad)'};
+            fill: ${isDark ? '#ffffff' : '#0284c7'};
           }
           .portfolio-text {
             fill: url(#logoBlueGrad);
@@ -62,14 +74,14 @@ export default function Logo({ className }: { className?: string }) {
             font-size: 26px;
             font-weight: 800;
             letter-spacing: 14px;
-            transition: fill 0.3s ease;
+            transition: fill 0.35s ease;
           }
           .logo-svg:hover .portfolio-text {
-            fill: ${isDark ? 'url(#logoSilverGrad)' : 'url(#logoBlackGrad)'};
+            fill: ${isDark ? '#ffffff' : '#0284c7'};
           }
         `}
       </style>
-      
+
       <g className="logo-group">
         {/* Tech Accents Left */}
         <g className="tech-accent" strokeWidth="3">

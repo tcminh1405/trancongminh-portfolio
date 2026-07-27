@@ -58,16 +58,8 @@ export default function About() {
                     color: "#f4f4f5",
                   }}
                 >
-                  {/* Green dot */}
-                  <span
-                    style={{
-                      width: 8,
-                      height: 8,
-                      background: "#4ade80",
-                      borderRadius: "50%",
-                      display: "inline-block",
-                    }}
-                  />
+                  {/* Green dot pulsing */}
+                  <span className="green-dot-pulse" />
                   Available for work
                 </div>
               </div>

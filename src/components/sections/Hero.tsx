@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa";
 import { personal } from "@/data/personal";
 import ThreeBackground from "@/components/ui/ThreeBackground";
+import Typewriter from "@/components/ui/Typewriter";
 import { useTheme } from "next-themes";
 import { useIsMounted } from "@/hooks/useMounted";
 
@@ -93,17 +94,16 @@ export default function Hero() {
                   height: 72,
                 }}
               />
-              {/* Status indicator — online (green dot) */}
+              {/* Status indicator — online (green dot pulsing) */}
               <span
+                className="green-dot-pulse"
                 style={{
                   position: "absolute",
                   bottom: 2,
                   right: 2,
                   width: 14,
                   height: 14,
-                  background: "#22c55e",
-                  borderRadius: "50%",
-                  border: "3px solid var(--bg-dark)",
+                  border: "2px solid var(--bg-dark)",
                 }}
               />
             </div>
@@ -147,19 +147,29 @@ export default function Hero() {
             </span>
           </motion.div>
 
-          {/* H1 — clamp font size */}
+          {/* H1 — clamp font size optimized for mobile & no line breaks for titles */}
           <motion.h1
             variants={itemVariants}
             style={{
-              fontSize: "clamp(2.2rem, 5vw, 5rem)",
+              fontSize: "clamp(1.4rem, 4.2vw, 4.25rem)",
               fontWeight: 800,
-              lineHeight: 1.1,
-              marginBottom: "1.5rem",
+              lineHeight: 1.2,
+              marginBottom: "1.25rem",
               color: "var(--text-primary)",
             }}
           >
             Trần Công Minh<br />
-            <span className="gradient-text">Software Engineer</span>
+            <span className="gradient-text" style={{ whiteSpace: "nowrap", display: "inline-block", maxWidth: "100%" }}>
+              <Typewriter
+                words={[
+                  "Full-Stack Developer",
+                  "Java Developer",
+                  "React Developer",
+                  "Backend Developer",
+                  "Software Engineer",
+                ]}
+              />
+            </span>
           </motion.h1>
 
           {/* Description */}

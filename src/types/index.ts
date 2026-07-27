@@ -17,12 +17,16 @@ export interface PersonalInfo {
 // --- Skills ---
 export interface SkillItem {
   name: string;
-  icon?: ComponentType<{ size?: number; className?: string; color?: string }>; // react-icons component
+  percentage: number;
+  icon?: ComponentType<{ size?: number; className?: string; color?: string }>;
+  image?: string;
   color?: string;
 }
 
 export interface SkillCategory {
-  title: string; // ví dụ: "Frontend", "Backend", "Tools"
+  title: string;
+  icon?: ComponentType<{ size?: number; className?: string; color?: string }>;
+  accentColor?: string;
   skills: SkillItem[];
 }
 

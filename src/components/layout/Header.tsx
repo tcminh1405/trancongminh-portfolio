@@ -109,15 +109,26 @@ export default function Header() {
   const navLinkStyle = (id: string): React.CSSProperties => ({
     position: "relative",
     zIndex: 1,
-    padding: "0.5rem 1rem",
-    color: activeSection === id
-      ? (isDark ? "#f4f4f5" : "#18181b")
-      : (isDark ? "#a1a1aa" : "#52525b"),
+    padding: "0.5rem 1.1rem",
+    borderRadius: "9999px",
     textDecoration: "none",
     fontSize: "0.9rem",
-    transition: "color 0.3s",
+    fontWeight: activeSection === id ? 600 : 500,
+    transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
     whiteSpace: "nowrap",
   });
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   return (
     <>
@@ -129,9 +140,10 @@ export default function Header() {
           position: "fixed",
           top: 0,
           left: 0,
-          height: "8px",
+          height: "4px",
           width: `${progress}%`,
-          background: "linear-gradient(to right, var(--accent-purple), var(--accent-blue))",
+          background: "linear-gradient(90deg, #155dfc 0%, #488bfb 50%, #0ea5e9 100%)",
+          boxShadow: "0 0 12px rgba(72, 139, 251, 0.8), 0 0 4px rgba(14, 165, 233, 0.6)",
           zIndex: 1000,
           transition: "width 0.1s linear",
         }}
@@ -146,7 +158,6 @@ export default function Header() {
         </Link>
 
         {/* ── Desktop nav + Resume + ThemeToggle ── */}
-        {/* Dùng isMobile state thay vì CSS để tránh inline style override */}
         {!isMobile && (
           <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }} suppressHydrationWarning>
 
@@ -169,13 +180,19 @@ export default function Header() {
                 }}
               />
               {navLinks.map(({ href, label }) => (
-                <Link key={href} href={href} style={navLinkStyle(href.slice(1))} suppressHydrationWarning>
+                <Link
+                  key={href}
+                  href={href}
+                  className={`nav-item-link ${activeSection === href.slice(1) ? "is-active" : ""}`}
+                  style={navLinkStyle(href.slice(1))}
+                  suppressHydrationWarning
+                >
                   {label}
                 </Link>
               ))}
             </nav>
 
-            {/* Resume button — xanh lá gốc */}
+            {/* Resume button */}
             <a
               href={personal.resumeUrl}
               target="_blank"
@@ -189,9 +206,20 @@ export default function Header() {
                 textDecoration: "none",
                 fontSize: "0.875rem",
                 fontWeight: 700,
-                transition: "transform 0.2s, opacity 0.2s",
+                transition: "all 0.25s ease",
                 whiteSpace: "nowrap",
                 flexShrink: 0,
+                boxShadow: "0 4px 14px rgba(74, 222, 128, 0.3)",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.transform = "translateY(-2px) scale(1.03)";
+                el.style.boxShadow = "0 6px 20px rgba(74, 222, 128, 0.5)";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLAnchorElement;
+                el.style.transform = "none";
+                el.style.boxShadow = "0 4px 14px rgba(74, 222, 128, 0.3)";
               }}
             >
               Resume
@@ -212,7 +240,7 @@ export default function Header() {
                 placeItems: "center",
                 borderRadius: "50%",
                 border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0,0,0,0.1)",
-                transition: "color 0.2s, border-color 0.2s, background 0.2s",
+                transition: "all 0.25s ease",
                 flexShrink: 0,
                 textDecoration: "none",
               }}
@@ -221,12 +249,14 @@ export default function Header() {
                 el.style.color = isDark ? "var(--accent-blue)" : "#000";
                 el.style.borderColor = isDark ? "var(--accent-blue)" : "#000";
                 el.style.background = isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0,0,0,0.05)";
+                el.style.transform = "translateY(-2px) scale(1.05)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
                 el.style.color = isDark ? "#94a3b8" : "#52525b";
                 el.style.borderColor = isDark ? "var(--border-color)" : "rgba(0,0,0,0.1)";
                 el.style.background = "transparent";
+                el.style.transform = "none";
               }}
             >
               <FaGithub size={18} />
@@ -246,98 +276,183 @@ export default function Header() {
               aria-expanded={menuOpen}
               style={{ background: "none", border: "none", color: isDark ? "#a1a1aa" : "#52525b", cursor: "pointer", padding: "0.25rem", lineHeight: 0 }}
             >
-              {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+              {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
           </div>
         )}
       </header>
 
-      {/* ── Mobile drawer ── */}
-      <AnimatePresence initial={false}>
+      {/* ── Mobile Slide-Over Drawer + Backdrop Blur Overlay ── */}
+      <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            key="drawer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1, transition: { duration: 0.25 } }}
-            exit={{ height: 0, opacity: 0, transition: { duration: 0.2 } }}
-            style={{
-              position: "fixed",
-              top: "88px",
-              left: "50%",
-              transform: "translateX(-50%)",
-              width: "90%",
-              maxWidth: "1400px",
-              zIndex: 998,
-              overflow: "hidden",
-              borderRadius: "1.5rem",
-              background: isDark ? "rgba(9, 14, 17, 0.96)" : "rgba(248, 248, 249, 0.96)",
-              backdropFilter: "blur(14px)",
-              border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <nav style={{ display: "flex", flexDirection: "column", padding: "1rem", gap: "0.25rem" }}>
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  onClick={close}
-                  suppressHydrationWarning
-                  style={{
-                    padding: "0.625rem 1rem",
-                    color: isDark ? "#a1a1aa" : "#52525b",
-                    textDecoration: "none",
-                    fontSize: "0.9rem",
-                    borderRadius: "0.75rem",
-                  }}
-                >
-                  {label}
-                </Link>
-              ))}
-              <a
-                href={personal.resumeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={close}
-                style={{
-                  marginTop: "0.5rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  padding: "0.625rem 1rem",
-                  borderRadius: "9999px",
-                  background: "#4ade80",
-                  color: "#0a0f1e",
-                  fontWeight: 700,
-                  fontSize: "0.875rem",
-                  textDecoration: "none",
-                }}
-              >
-                Resume
-              </a>
+          <>
+            {/* Backdrop Blur Overlay */}
+            <motion.div
+              key="mobile-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={close}
+              style={{
+                position: "fixed",
+                inset: 0,
+                background: isDark ? "rgba(0, 0, 0, 0.65)" : "rgba(0, 0, 0, 0.4)",
+                backdropFilter: "blur(8px)",
+                WebkitBackdropFilter: "blur(8px)",
+                zIndex: 1001,
+              }}
+            />
 
-              {/* GitHub — mobile drawer */}
-              <a
-                href={personal.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={close}
+            {/* Right Slide-over Drawer Panel */}
+            <motion.div
+              key="mobile-drawer"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 28, stiffness: 300 }}
+              style={{
+                position: "fixed",
+                top: 0,
+                right: 0,
+                bottom: 0,
+                width: "80vw",
+                maxWidth: "320px",
+                height: "100vh",
+                zIndex: 1002,
+                background: isDark ? "rgba(9, 14, 17, 0.96)" : "rgba(255, 255, 255, 0.96)",
+                backdropFilter: "blur(20px)",
+                WebkitBackdropFilter: "blur(20px)",
+                borderLeft: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
+                padding: "1.5rem 1.25rem",
+                display: "flex",
+                flexDirection: "column",
+                boxShadow: "-10px 0 30px rgba(0, 0, 0, 0.4)",
+                overflowY: "auto",
+              }}
+            >
+              {/* Drawer Top Header (Logo + Close icon) */}
+              <div
                 style={{
-                  marginTop: "0.25rem",
                   display: "flex",
                   alignItems: "center",
-                  gap: "0.6rem",
-                  padding: "0.625rem 1rem",
-                  borderRadius: "0.75rem",
-                  color: isDark ? "#a1a1aa" : "#52525b",
-                  textDecoration: "none",
-                  fontSize: "0.9rem",
+                  justifyContent: "space-between",
+                  paddingBottom: "1.25rem",
+                  borderBottom: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
+                  marginBottom: "1.25rem",
                 }}
               >
-                <FaGithub size={16} /> GitHub
-              </a>
-            </nav>
-          </motion.div>
+                <Logo />
+                <button
+                  onClick={close}
+                  aria-label="Đóng menu"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    color: isDark ? "#a1a1aa" : "#52525b",
+                    cursor: "pointer",
+                    padding: "0.4rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderRadius: "50%",
+                  }}
+                >
+                  <FiX size={24} />
+                </button>
+              </div>
+
+              {/* Navigation Links */}
+              <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem", flex: 1 }}>
+                {navLinks.map(({ href, label }) => {
+                  const isActive = activeSection === href.slice(1);
+                  return (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={close}
+                      className={`mobile-nav-link ${isActive ? "is-active" : ""}`}
+                      suppressHydrationWarning
+                      style={{
+                        padding: "0.75rem 1rem",
+                        color: isActive
+                          ? (isDark ? "var(--accent-blue)" : "#0ea5e9")
+                          : (isDark ? "#e8f0f4" : "#18181b"),
+                        textDecoration: "none",
+                        fontSize: "1rem",
+                        fontWeight: isActive ? 600 : 500,
+                        borderRadius: "0.75rem",
+                        background: isActive
+                          ? (isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(14, 165, 233, 0.08)")
+                          : "transparent",
+                        transition: "all 0.25s ease",
+                      }}
+                    >
+                      {label}
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              {/* Action Buttons at bottom of Drawer */}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "0.75rem",
+                  paddingTop: "1.25rem",
+                  borderTop: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.1)",
+                  marginTop: "auto",
+                }}
+              >
+                <a
+                  href={personal.resumeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "9999px",
+                    background: "#4ade80",
+                    color: "#0a0f1e",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    textDecoration: "none",
+                  }}
+                >
+                  Resume
+                </a>
+
+                <a
+                  href={personal.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.6rem",
+                    padding: "0.75rem 1rem",
+                    borderRadius: "9999px",
+                    border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.15)",
+                    color: isDark ? "#e8f0f4" : "#18181b",
+                    textDecoration: "none",
+                    fontSize: "0.9rem",
+                    fontWeight: 600,
+                  }}
+                >
+                  <FaGithub size={18} /> GitHub
+                </a>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>
   );
 }
+

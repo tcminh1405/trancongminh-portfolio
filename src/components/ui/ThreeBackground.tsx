@@ -76,8 +76,8 @@ export default function ThreeBackground() {
     const particlePositions = new Float32Array(particleCount * 3);
     const particleColors = new Float32Array(particleCount * 3);
 
-    const c1 = isDark ? new THREE.Color("#155dfc") : new THREE.Color("#132139"); // Royal Blue / Dark Navy
-    const c2 = isDark ? new THREE.Color("#488bfb") : new THREE.Color("#396fc8"); // Accent Sky Blue / Accent Medium Blue
+    const c1 = isDark ? new THREE.Color("#f8fafc") : new THREE.Color("#475569"); // Celestial White (Trắng thiên thể)
+    const c2 = isDark ? new THREE.Color("#38bdf8") : new THREE.Color("#0284c7"); // Glowing Cyan-White (Trắng xanh)
 
     // Setup Points Geometry
     const pointsGeometry = new THREE.BufferGeometry();
@@ -97,8 +97,8 @@ export default function ThreeBackground() {
           size / 2, size / 2, size / 2
         );
         gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
-        gradient.addColorStop(0.2, "rgba(255, 255, 255, 0.8)");
-        gradient.addColorStop(0.5, "rgba(255, 255, 255, 0.15)");
+        gradient.addColorStop(0.2, "rgba(240, 249, 255, 0.95)");
+        gradient.addColorStop(0.5, "rgba(56, 189, 248, 0.25)");
         gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
 
         ctx.fillStyle = gradient;
@@ -108,7 +108,7 @@ export default function ThreeBackground() {
     };
 
     const pointsMaterial = new THREE.PointsMaterial({
-      size: 15, // Larger particles for visibility
+      size: 14,
       map: createCircleTexture(),
       vertexColors: true,
       transparent: true,
@@ -132,7 +132,7 @@ export default function ThreeBackground() {
     const linesMaterial = new THREE.LineBasicMaterial({
       vertexColors: true,
       transparent: true,
-      opacity: isDark ? 0.35 : 0.25,
+      opacity: isDark ? 0.4 : 0.28,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
     });
@@ -147,7 +147,7 @@ export default function ThreeBackground() {
       targetX: 0,
       targetY: 0,
       active: false,
-      radius: 160, // Original interaction radius in pixels
+      radius: 190, // Increased attraction radius
     };
 
     const handleMouseMove = (event: MouseEvent) => {
@@ -181,12 +181,12 @@ export default function ThreeBackground() {
 
     // --- 5. Animation Loop ---
     let frameId: number;
-    const maxConnectDist = 80; // Shrunk to have more isolated particles when no mouse
+    const maxConnectDist = 95;
 
     const animate = () => {
       // Smooth mouse coordinate interpolation (inertia)
-      mouse.x += (mouse.targetX - mouse.x) * 0.08;
-      mouse.y += (mouse.targetY - mouse.y) * 0.08;
+      mouse.x += (mouse.targetX - mouse.x) * 0.1;
+      mouse.y += (mouse.targetY - mouse.y) * 0.1;
 
       // 5a. Update Particle Positions and Physics
       for (let i = 0; i < particleCount; i++) {
@@ -205,7 +205,7 @@ export default function ThreeBackground() {
         if (p.y < -marginY) { p.y = -marginY; p.vy *= -1; }
         if (p.y > marginY) { p.y = marginY; p.vy *= -1; }
 
-        // Mouse gravity interaction (attract and push away when leaving)
+        // Mouse gravity interaction (Attract particles to mouse: tụ lại)
         if (mouse.active) {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
@@ -213,17 +213,11 @@ export default function ThreeBackground() {
 
           if (dist < mouse.radius) {
             const force = (mouse.radius - dist) / mouse.radius;
-            // Gravity pull
-            p.vx += (dx / dist) * force * 0.015;
-            p.vy += (dy / dist) * force * 0.015;
+            // Gravitational convergence towards mouse cursor
+            p.vx += (dx / dist) * force * 0.04;
+            p.vy += (dy / dist) * force * 0.04;
 
-            p.radius = p.baseRadius + force * 2.5;
-          } else if (dist < mouse.radius * 1.5) {
-            // Slingshot push-away force when exiting the cursor range
-            const force = (mouse.radius * 1.5 - dist) / (mouse.radius * 0.5);
-            p.vx -= (dx / dist) * force * 0.035;
-            p.vy -= (dy / dist) * force * 0.035;
-            p.radius += (p.baseRadius - p.radius) * 0.05;
+            p.radius = p.baseRadius + force * 2.8;
           } else {
             p.radius += (p.baseRadius - p.radius) * 0.05;
           }
@@ -234,14 +228,14 @@ export default function ThreeBackground() {
         // Apply drag/friction
         const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
         const normalMaxSpeed = 0.6;
-        const maxAllowedSpeed = 1.8;
+        const maxAllowedSpeed = 2.0;
 
         if (speed > maxAllowedSpeed) {
           p.vx = (p.vx / speed) * maxAllowedSpeed;
           p.vy = (p.vy / speed) * maxAllowedSpeed;
         } else if (speed > normalMaxSpeed) {
-          p.vx *= 0.95;
-          p.vy *= 0.95;
+          p.vx *= 0.94;
+          p.vy *= 0.94;
         }
 
         // Write points into WebGL buffer (Z is flat 0)
@@ -249,14 +243,14 @@ export default function ThreeBackground() {
         particlePositions[i * 3 + 1] = p.y;
         particlePositions[i * 3 + 2] = 0;
 
-        // Colors: Default to base color c1 (purple). Interpolate to c2 (blue) if near active mouse.
+        // Colors: Celestial White c1 -> Glowing Cyan-White c2 when converging near mouse
         const color = c1.clone();
         if (mouse.active) {
           const dx = mouse.x - p.x;
           const dy = mouse.y - p.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < mouse.radius) {
-            const ratio = 1 - dist / mouse.radius;
+            const ratio = Math.pow(1 - dist / mouse.radius, 0.7);
             color.lerp(c2, ratio);
           }
         }

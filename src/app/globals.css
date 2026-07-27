@@ -4,11 +4,11 @@
    DARK / LIGHT MODE — next-themes thêm class .dark vào <html>
    ============================================================ /* Dark mode (default) */
 :root {
-  --bg-dark: #020507;
-  --bg-card: rgba(9, 14, 17, 0.7);
-  --border-color: rgba(72, 139, 251, 0.16);
+  --bg-dark: #06090e;
+  --bg-card: rgba(18, 28, 42, 0.82);
+  --border-color: rgba(72, 139, 251, 0.28);
   --text-primary: #e8f0f4;
-  --text-secondary: #75838a;
+  --text-secondary: #94a3b8;
   --gradient-purple: #155dfc;
   --gradient-pink: #488bfb;
   --gradient-blue: #0ea5e9;
@@ -25,13 +25,15 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-color: #488bfb var(--bg-dark);
+  scrollbar-width: thin;
 }
 
 /* Light mode — .dark class bị remove khỏi <html> */
 html:not(.dark) {
   --bg-dark: #f8f8f9;
-  --bg-card: rgba(255, 255, 255, 0.85);
-  --border-color: rgba(57, 111, 200, 0.15);
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --border-color: rgba(57, 111, 200, 0.2);
   --text-primary: #070c0f;
   --text-secondary: #4a585e;
 }
@@ -41,15 +43,12 @@ html:not(.dark) header {
   background: rgba(248, 248, 249, 0.92) !important;
   border-color: rgba(57, 111, 200, 0.2) !important;
 }
-/* Light mode — border-color riêng */
-html:not(.dark) {
-  --border-color: rgba(57, 111, 200, 0.15);
-}
 
 /* Light mode: glass-card background sáng */
 html:not(.dark) .glass-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(57, 111, 200, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(57, 111, 200, 0.2);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 body {
@@ -61,9 +60,10 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar — màu gradient đặc trưng */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -71,12 +71,14 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(72, 139, 251, 0.3);
-  border-radius: 4px;
+  background: linear-gradient(180deg, #155dfc 0%, #488bfb 50%, #0ea5e9 100%);
+  border-radius: 9999px;
+  box-shadow: 0 0 8px rgba(72, 139, 251, 0.4);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(72, 139, 251, 0.6);
+  background: linear-gradient(180deg, #488bfb 0%, #0ea5e9 100%);
+  box-shadow: 0 0 12px rgba(72, 139, 251, 0.7);
 }
 
 /* ============================================================
@@ -147,7 +149,7 @@ body {
 }
 
 /* ============================================================
-   GLASS CARD
+   GLASS CARD — Nổi bật trên nền tối (High Contrast & Ambient Glow)
    ============================================================ */
 .glass-card {
   background: var(--bg-card);
@@ -155,12 +157,13 @@ body {
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--border-color);
   border-radius: 1.25rem;
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 12px 35px -8px rgba(0, 0, 0, 0.55), 0 0 20px rgba(72, 139, 251, 0.1);
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(168, 85, 247, 0.35);
-  box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.2);
+  border-color: rgba(72, 139, 251, 0.55);
+  box-shadow: 0 16px 45px -8px rgba(0, 0, 0, 0.65), 0 0 30px rgba(72, 139, 251, 0.22);
 }
 
 /* ============================================================
@@ -200,8 +203,10 @@ body {
 }
 
 .btn-secondary:hover {
-  background: rgba(168, 85, 247, 0.12);
-  border-color: var(--gradient-purple);
+  background: linear-gradient(135deg, #155dfc 0%, #488bfb 100%) !important;
+  color: #ffffff !important;
+  border-color: rgba(72, 139, 251, 0.8) !important;
+  box-shadow: 0 6px 20px rgba(72, 139, 251, 0.45) !important;
   transform: translateY(-2px);
 }
 
@@ -451,17 +456,11 @@ html:not(.dark) .btn-secondary {
 @media (max-width: 768px) {
   .footer-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 2rem 1.5rem;
   }
 
   .footer-brand-col {
     grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -550,6 +549,46 @@ html:not(.dark) .btn-secondary {
 /* ============================================================
    PROJECTS DESIGN MATCH — badges and buttons
    ============================================================ */
+.project-horizontal-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.project-image-col {
+  order: 1;
+}
+
+.project-info-col {
+  order: 2;
+}
+
+.project-horizontal-card.is-reversed .project-image-col {
+  order: 2;
+}
+
+.project-horizontal-card.is-reversed .project-info-col {
+  order: 1;
+}
+
+@media (max-width: 900px) {
+  .project-horizontal-card {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+    padding: 1.25rem !important;
+  }
+
+  .project-image-col {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  .project-info-col {
+    order: 2 !important;
+  }
+}
+
 .project-tech-badge {
   background: rgba(37, 99, 235, 0.06);
   color: #2563eb;
@@ -581,6 +620,8 @@ html.dark .project-tech-badge {
   cursor: pointer;
   transition: all 0.2s ease;
   text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-btn-code:hover {
@@ -607,6 +648,8 @@ html.dark .project-btn-code:hover {
   transition: all 0.2s ease;
   text-decoration: none;
   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .project-btn-demo:hover {
@@ -614,4 +657,284 @@ html.dark .project-btn-code:hover {
   border-color: #1d4ed8;
   box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
   transform: translateY(-1.5px);
+}
+
+/* ============================================================
+   HEADER NAV LINKS HOVER & ACTIVE — Signature Web Blue Theme
+   ============================================================ */
+.nav-item-link {
+  border-radius: 9999px !important;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  border: 1px solid transparent !important;
+  color: var(--text-secondary);
+}
+
+/* Hover state: Web Blue soft tint */
+.nav-item-link:hover {
+  color: #38bdf8 !important;
+  background: rgba(72, 139, 251, 0.16) !important;
+  border-color: rgba(72, 139, 251, 0.35) !important;
+}
+
+html:not(.dark) .nav-item-link:hover {
+  color: #0284c7 !important;
+  background: rgba(14, 165, 233, 0.12) !important;
+  border-color: rgba(14, 165, 233, 0.3) !important;
+}
+
+/* Active state: Signature Web Blue Gradient Pill */
+.nav-item-link.is-active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #155dfc 0%, #488bfb 100%) !important;
+  border-color: rgba(72, 139, 251, 0.6) !important;
+  box-shadow: 0 4px 15px rgba(72, 139, 251, 0.4) !important;
+}
+
+html:not(.dark) .nav-item-link.is-active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  border-color: rgba(37, 99, 235, 0.5) !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
+}
+
+/* Mobile Drawer Links Hover & Active */
+.mobile-nav-link {
+  transition: all 0.25s ease !important;
+}
+
+.mobile-nav-link:hover {
+  color: var(--accent-blue) !important;
+  background: rgba(72, 139, 251, 0.16) !important;
+  padding-left: 1.25rem !important;
+}
+
+html:not(.dark) .mobile-nav-link:hover {
+  color: #0284c7 !important;
+  background: rgba(14, 165, 233, 0.12) !important;
+  padding-left: 1.25rem !important;
+}
+
+.mobile-nav-link.is-active {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #155dfc 0%, #488bfb 100%) !important;
+  box-shadow: 0 4px 15px rgba(72, 139, 251, 0.35) !important;
+}
+
+/* ============================================================
+   SKILLS CATEGORY CARDS & ITEM ROWS (Light & Dark Mode Optimized)
+   ============================================================ */
+.skill-category-card {
+  background: linear-gradient(145deg, rgba(15, 23, 34, 0.88), rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+.skill-item-row {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.skill-item-row:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border-color);
+}
+
+.skill-progress-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.skill-progress-bar {
+  background: linear-gradient(90deg, rgba(232, 240, 244, 0.85) 0%, #38bdf8 65%, var(--accent-blue) 100%);
+  box-shadow: 0 0 8px rgba(72, 139, 251, 0.4);
+}
+
+/* Light Mode Optimizations */
+html:not(.dark) .skill-category-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.85)) !important;
+  border: 1px solid rgba(57, 111, 200, 0.18) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02) !important;
+}
+
+html:not(.dark) .skill-item-row {
+  background: rgba(248, 250, 252, 0.95) !important;
+  border: 1px solid rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02) !important;
+}
+
+html:not(.dark) .skill-item-row:hover {
+  background: #ffffff !important;
+  border-color: rgba(57, 111, 200, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(57, 111, 200, 0.1) !important;
+}
+
+html:not(.dark) .skill-progress-track {
+  background: rgba(0, 0, 0, 0.08) !important;
+}
+
+html:not(.dark) .skill-progress-bar {
+  background: linear-gradient(90deg, #64748b 0%, #0284c7 65%, #2563eb 100%) !important;
+  box-shadow: 0 0 6px rgba(37, 99, 235, 0.25) !important;
+}
+
+/* ============================================================
+   CONTACT FORM INPUTS — Light & Dark Mode Optimized
+   ============================================================ */
+.contact-form-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(10, 16, 26, 0.75);
+  border: 1px solid var(--border-color);
+  border-radius: 0.6rem;
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.contact-form-input::placeholder {
+  color: #94a3b8;
+}
+
+.contact-form-input:focus {
+  border-color: var(--accent-blue) !important;
+  box-shadow: 0 0 14px rgba(72, 139, 251, 0.35) !important;
+}
+
+html:not(.dark) .contact-form-input {
+  background: #ffffff !important;
+  border: 1px solid rgba(57, 111, 200, 0.25) !important;
+  color: #070c0f !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+html:not(.dark) .contact-form-input::placeholder {
+  color: #64748b !important;
+}
+
+html:not(.dark) .contact-form-input:focus {
+  border-color: #2563eb !important;
+  box-shadow: 0 0 14px rgba(37, 99, 235, 0.25) !important;
+}
+
+.contact-form-input.has-error {
+  border-color: #f87171 !important;
+}
+
+/* ============================================================
+   TYPEWRITER CURSOR ANIMATION — Perfectly glued & inline
+   ============================================================ */
+.typewriter-cursor {
+  display: inline !important;
+  margin-left: 3px !important;
+  font-weight: 180 !important;
+  font-style: normal !important;
+  color: var(--accent-blue) !important;
+  -webkit-text-fill-color: var(--accent-blue) !important;
+  animation: typewriter-blink 0.85s infinite !important;
+}
+
+@keyframes typewriter-blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   PULSING GREEN STATUS DOT — Radar Glow Animation
+   ============================================================ */
+.green-dot,
+.green-dot-pulse {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7), 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: pulse-green-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.green-dot::after,
+.green-dot-pulse::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.4);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-green-glow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7), 0 0 8px rgba(34, 197, 94, 0.6);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(0.85);
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0), 0 0 2px rgba(34, 197, 94, 0.2);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  70%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* ============================================================
+   INFINITE HORIZONTAL MARQUEE TABS — Skills Category Filter
+   ============================================================ */
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+  padding: 0.5rem 0;
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  gap: 0.75rem;
+  animation: marquee-slide 28s linear infinite;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-tab-btn:hover {
+  border-color: rgba(72, 139, 251, 0.5) !important;
+  color: #38bdf8 !important;
+  background: rgba(72, 139, 251, 0.12) !important;
+  transform: translateY(-2px);
 }

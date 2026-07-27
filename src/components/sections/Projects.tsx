@@ -26,20 +26,17 @@ export default function Projects() {
             return (
               <ScrollAnimation key={project.id} direction="up" delay={index * 0.1}>
                 <div
-                  className="glass-card project-horizontal-card"
+                  className={`glass-card project-horizontal-card ${isReversed ? "is-reversed" : ""}`}
                   style={{
                     borderRadius: "1.25rem",
                     padding: "1.25rem 1.5rem",
-                    display: "grid",
-                    gridTemplateColumns: isReversed ? "1fr 1fr" : "1fr 1fr",
-                    gap: "1.75rem",
-                    alignItems: "center",
                     transition: "transform 0.3s ease, box-shadow 0.3s ease",
                     border: "1px solid var(--border-color)",
                   }}
                 >
                   {/* ── BÊN ẢNH PROJECT (HIỂN THỊ ĐẦY ĐỦ 100% RÕ NÉT & SẮC SẢO) ── */}
                   <div
+                    className="project-image-col"
                     style={{
                       position: "relative",
                       width: "100%",
@@ -48,7 +45,6 @@ export default function Projects() {
                       overflow: "hidden",
                       boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)",
                       border: "1px solid var(--border-color)",
-                      order: isReversed ? 2 : 1,
                     }}
                   >
                     <Image
@@ -58,7 +54,7 @@ export default function Projects() {
                       unoptimized
                       sizes="(max-width: 900px) 100vw, 50vw"
                       style={{
-                        objectFit: "fill",
+                        objectFit: "cover",
                         objectPosition: "top center",
                         transition: "transform 0.4s ease",
                       }}
@@ -69,11 +65,11 @@ export default function Projects() {
 
                   {/* ── BÊN THÔNG TIN: TÊN, MÔ TẢ, TECH STACK & LINK GIT ── */}
                   <div
+                    className="project-info-col"
                     style={{
                       display: "flex",
                       flexDirection: "column",
                       justifyContent: "center",
-                      order: isReversed ? 1 : 2,
                     }}
                   >
                     <h3

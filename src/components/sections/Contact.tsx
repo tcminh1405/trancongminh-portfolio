@@ -33,19 +33,19 @@ const labelStyle: React.CSSProperties = {
   marginBottom: "0.4rem",
 };
 
-// Style dùng chung cho input/textarea — khớp hoàn toàn bản gốc
+// Style dùng chung cho input/textarea — nổi bật trên glass-card
 const inputStyle = (hasError: boolean): React.CSSProperties => ({
   width: "100%",
   padding: "0.75rem 1rem",
-  backgroundColor: "var(--bg-dark)",
+  background: "rgba(6, 9, 14, 0.6)",
   border: `1px solid ${hasError ? "#f87171" : "var(--border-color)"}`,
-  borderRadius: "0.5rem",
+  borderRadius: "0.6rem",
   color: "var(--text-primary)",
   fontFamily: "inherit",
   fontSize: "0.9rem",
-  transition: "border-color 0.3s, box-shadow 0.3s",
+  transition: "all 0.3s ease",
   outline: "none",
-  background: "var(--bg-dark)",
+  boxShadow: "inset 0 2px 4px rgba(0, 0, 0, 0.3)",
 });
 
 export default function Contact() {
@@ -211,7 +211,7 @@ export default function Contact() {
                     aria-required="true"
                     aria-describedby={state.errors?.name ? "name-error" : undefined}
                     aria-invalid={!!state.errors?.name}
-                    style={inputStyle(!!state.errors?.name)}
+                    className={`contact-form-input ${state.errors?.name ? "has-error" : ""}`}
                   />
                   {state.errors?.name && <p id="name-error" role="alert" style={{ marginTop: "0.25rem", fontSize: "0.8rem", color: "#f87171" }}>{state.errors.name}</p>}
                 </div>
@@ -227,7 +227,7 @@ export default function Contact() {
                     aria-required="true"
                     aria-describedby={state.errors?.email ? "email-error" : undefined}
                     aria-invalid={!!state.errors?.email}
-                    style={inputStyle(!!state.errors?.email)}
+                    className={`contact-form-input ${state.errors?.email ? "has-error" : ""}`}
                   />
                   {state.errors?.email && <p id="email-error" role="alert" style={{ marginTop: "0.25rem", fontSize: "0.8rem", color: "#f87171" }}>{state.errors.email}</p>}
                 </div>
@@ -244,7 +244,7 @@ export default function Contact() {
                   aria-required="true"
                   aria-describedby={state.errors?.subject ? "subject-error" : undefined}
                   aria-invalid={!!state.errors?.subject}
-                  style={inputStyle(!!state.errors?.subject)}
+                  className={`contact-form-input ${state.errors?.subject ? "has-error" : ""}`}
                 />
                 {state.errors?.subject && <p id="subject-error" role="alert" style={{ marginTop: "0.25rem", fontSize: "0.8rem", color: "#f87171" }}>{state.errors.subject}</p>}
               </div>
@@ -260,7 +260,8 @@ export default function Contact() {
                   aria-required="true"
                   aria-describedby={state.errors?.message ? "message-error" : undefined}
                   aria-invalid={!!state.errors?.message}
-                  style={{ ...inputStyle(!!state.errors?.message), resize: "vertical" }}
+                  className={`contact-form-input ${state.errors?.message ? "has-error" : ""}`}
+                  style={{ resize: "vertical" }}
                 />
                 {state.errors?.message && <p id="message-error" role="alert" style={{ marginTop: "0.25rem", fontSize: "0.8rem", color: "#f87171" }}>{state.errors.message}</p>}
               </div>
