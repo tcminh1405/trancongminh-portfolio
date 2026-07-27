@@ -51,31 +51,10 @@ export default function Footer() {
 
   const [visitCount, setVisitCount] = useState<number>(1280);
   const [pageViews, setPageViews] = useState<number>(3510);
-  const [activeViewers, setActiveViewers] = useState<number>(1);
-
   useEffect(() => {
     if (!mounted) return;
     const timer = setTimeout(() => {
-      // 1. Register active online session (NO increment on F5 refresh)
-      const isTabAlreadyOnline = sessionStorage.getItem("portfolio_tab_online");
-      const onlineUrl = isTabAlreadyOnline
-        ? "https://api.counterapi.dev/v1/trancongminh-portfolio/online"
-        : "https://api.counterapi.dev/v1/trancongminh-portfolio/online/up";
-
-      if (!isTabAlreadyOnline) {
-        sessionStorage.setItem("portfolio_tab_online", "true");
-      }
-
-      fetch(onlineUrl)
-        .then((res) => (res.ok ? res.json() : null))
-        .then((data) => {
-          if (data && typeof data.count === "number") {
-            setActiveViewers(Math.max(1, data.count));
-          }
-        })
-        .catch(() => {});
-
-      // 2. Fetch & increment global page views
+      // 1. Fetch & increment global page views
       fetch("https://api.counterapi.dev/v1/trancongminh-portfolio/pageviews/up")
         .then((res) => (res.ok ? res.json() : null))
         .then((data) => {
@@ -104,20 +83,6 @@ export default function Footer() {
         })
         .catch(() => { });
 
-      // 4. Unregister active session when tab closes / unloads
-      const handleUnload = () => {
-        if (navigator.sendBeacon) {
-          navigator.sendBeacon("https://api.counterapi.dev/v1/trancongminh-portfolio/online/down");
-        } else {
-          fetch("https://api.counterapi.dev/v1/trancongminh-portfolio/online/down", { keepalive: true }).catch(() => {});
-        }
-      };
-
-      window.addEventListener("beforeunload", handleUnload);
-
-      return () => {
-        window.removeEventListener("beforeunload", handleUnload);
-      };
     }, 0);
 
     return () => clearTimeout(timer);
@@ -240,10 +205,8 @@ export default function Footer() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
             <span className="green-dot-pulse" />
-            <span style={{ fontWeight: 600, color: "var(--text-primary)" }}>Currently Viewing:</span>
-            <span style={{ color: "#4ade80", fontWeight: 700 }} suppressHydrationWarning>
-              {activeViewers} {activeViewers > 1 ? "Actives" : "Active"}
-            </span>
+            <span style={{ fontWeight: 600, color: "var(--text-primary)" }}>Status:</span>
+            <span style={{ color: "#4ade80", fontWeight: 700 }}>Available for Work</span>
           </div>
 
           <div style={{ width: 1, height: 16, background: "var(--border-color)", opacity: 0.6 }} />
