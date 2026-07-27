@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 import { AnimatePresence, motion } from "framer-motion";
@@ -41,7 +41,7 @@ export default function Header() {
           setStarCount(data.stargazers_count);
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const isClickingRef = useRef(false);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { skills } from "@/data/skills";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -64,12 +65,13 @@ function SkillItemRow({
               flexShrink: 0,
             }}
           >
-            <img
+            <Image
               src={image}
               alt={name}
               width={18}
               height={18}
               style={{ objectFit: "contain", width: 18, height: 18 }}
+              unoptimized
             />
           </span>
         ) : IconComp ? (

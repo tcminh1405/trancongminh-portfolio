@@ -9,7 +9,7 @@
   <a href="https://threejs.org/"><img src="https://img.shields.io/badge/Three.js-0.185-black?style=for-the-badge&logo=three.js&logoColor=white" alt="Three.js"/></a>
 </p>
 
-Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Developer & Software Engineering Student at Ho Chi Minh City University of Industry.
+The official personal portfolio web application of **Tran Cong Minh** — Software Engineering Student & Full-Stack Developer at Industrial University of Ho Chi Minh City.
 
 🌐 **Live Website**: [https://www.tcminh1405.id.vn](https://www.tcminh1405.id.vn/)  
 🔗 **GitHub Repository**: [https://github.com/tcminh1405/trancongminh-portfolio](https://github.com/tcminh1405/trancongminh-portfolio)
@@ -18,35 +18,37 @@ Personal Portfolio Web Application of **Tran Cong Minh** — Full-Stack Develope
 
 ## 📖 Table of Contents
 - [Overview](#-overview)
-- [Features](#-features)
+- [Key Features](#-key-features)
 - [Tech Stack](#-tech-stack)
 - [Project Showcase](#-project-showcase)
-- [Project Architecture](#-project-architecture)
+- [Architecture & Folder Structure](#-architecture--folder-structure)
 - [Getting Started](#-getting-started)
-- [Testing](#-testing)
-- [Contact](#-contact)
+- [Testing & Build](#-testing--build)
+- [Contact & Connect](#-contact--connect)
 
 ---
 
 ## 📌 Overview
 
-This repository contains the source code for the personal portfolio web application of **Tran Cong Minh** — Software Engineer & Full-Stack Developer. 
+This repository contains the full source code for the portfolio web application of **Tran Cong Minh**.
 
-Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Three.js**, this web application features a modern glassmorphism design system, theme-aware 3D particle and space canvases, responsive layouts, and server-side form handling with Zod validation and email notifications.
+Engineered with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, **Three.js**, and **Framer Motion**, this application delivers a premium glassmorphism design system, interactive celestial 3D particle backgrounds, continuous marquee category filters, global real-time visitor analytics, and smooth 60fps physics animations.
 
 ---
 
-## 🎨 Features
+## 🎨 Key Features
 
-- 🎨 **Modern UI/UX & Glassmorphism Design**: Custom dark and light themes with smooth glassmorphism containers and gradients.
-- 🌌 **Three.js Interactive Background**: Dynamic 3D interactive particle background canvas.
-- 🌓 **Dark & Light Mode Toggle**: Powered by `next-themes` with zero SSR hydration mismatch (`ClientOnly` wrapper).
-- 📱 **Fully Responsive Layout**: Mobile-first design optimized for desktop, tablet, and mobile devices.
-- 💼 **Projects Showcase**: Interactive project cards displaying backend/full-stack projects with technology badges, descriptions, and GitHub links.
-- 🛠️ **Categorized Skills Matrix**: Interactive skill bars and technology badges grouped by Frontend, Backend, and DevOps & Tools.
-- ⏳ **Experience & Education Timeline**: Interactive career milestones timeline.
-- ✉️ **Contact Form**: Form handling with Zod validation schema and Next.js Server Actions.
-- 🧪 **Automated Testing**: Integrated Vitest unit tests for core utilities.
+- 🌌 **Celestial White 3D Particle Background**: Interactive WebGL canvas in Three.js with starlight white particles (`#F8FAFC`) that gravitationally pull towards the mouse cursor and glow in electric cyan-blue (`#38BDF8`).
+- ✍️ **React 19 Typewriter Hero**: Smooth inline typewriter title rotation (`Full-Stack Developer`, `Backend Developer`, `Web Developer`) with mobile viewport clamping and glued cursor.
+- 🔀 **Framer Motion Gliding Header Navigation**: Active pill indicator (`<motion.span layoutId="activeHeaderPill" />`) with `cubic-bezier(0.16, 1, 0.3, 1)` liquid easing curve for 60fps sliding transitions on click & scroll.
+- ⭐ **Live GitHub Star Counter**: Header & Mobile drawer button fetching live repository stars directly from GitHub REST API.
+- 🔁 **Infinite Marquee Tech Filter**: `Technologies & Tools` section with an infinite horizontal scrolling marquee tab bar (`All`, `Backend Development`, `Frontend Development`, `Database Systems`, `Tools & Testing`, `Cloud & Deployment`, `AI & Automation`) with hover-pause selection.
+- 📊 **Global Real-Time Visitor Analytics**: Footer statistics widget tracking `Currently Viewing (1 Active)`, `Total Visitors` (unique sessions), and `Total Page Views` with a 1.2s `CountUpNumber` ease-out cubic rolling animation powered by `counterapi.dev`.
+- 🟢 **Pulsing Radar Status Indicator**: Pulsing green radar glow dots (`Available for work`, Avatar online status, Current status).
+- 🎨 **SVG Logo Glow & Hover**: Custom SVG logo with smooth scale, drop-shadow glow, and color gradient transitions.
+- 🌓 **Dark & Light Mode Toggle**: Powered by `next-themes` with zero SSR hydration mismatch.
+- 📱 **Mobile-First Responsive Drawer**: Slide-over drawer menu with backdrop blur for mobile viewports.
+- ✉️ **Server Actions Contact Form**: Contact form with Zod validation schema and Next.js Server Actions.
 
 ---
 
@@ -54,12 +56,13 @@ Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Thre
 
 | Domain | Technologies |
 | --- | --- |
-| **Core Framework** | Next.js 16 (App Router), React 19, TypeScript |
+| **Core Framework** | Next.js 16 (App Router), React 19, TypeScript 5 |
 | **Styling & UI** | Tailwind CSS v4, Custom CSS Variables, Glassmorphism |
-| **3D & Animations** | Three.js, Framer Motion, Canvas Animations |
+| **3D & Animations** | Three.js (WebGL Canvas), Framer Motion |
+| **Global Analytics** | CounterAPI (`counterapi.dev`), Local & Session Storage |
 | **Form & Email** | Next.js Server Actions, Resend API, Zod Validation |
-| **State & Theme** | next-themes, Custom Hooks (`useMounted`) |
-| **Testing & Tooling** | Vitest, ESLint, PostCSS, Git |
+| **State & Theme** | `next-themes`, Custom Hooks (`useMounted`, `useIsMobile`) |
+| **Testing & Quality** | Vitest, ESLint, PostCSS, Git |
 
 ---
 
@@ -67,13 +70,13 @@ Built with **Next.js 16 (App Router)**, **React 19**, **TypeScript**, and **Thre
 
 | Project | Type | Key Architecture & Description | Tech Stack | Links |
 | --- | --- | --- | --- | --- |
-| **🛒 TechShop** | E-Commerce | Distributed Microservices platform (11 services) with Kafka KRaft event-driven architecture, Outbox & Saga pattern, Redis caching & Nginx (stress-tested at 12k req/s). | Java 17, Spring Boot, Spring Cloud, Kafka, Redis, MySQL, Docker, Nginx, Grafana k6, ReactJS | [GitHub Repo](https://github.com/tcminh1405/TechShopProject) |
-| **💬 Real-Time Messaging** | Communication | Enterprise messaging & WebRTC video call ecosystem with Socket.io duplex messaging, polyglot persistence (PostgreSQL & MongoDB), Web & Mobile. | Node.js, TypeScript, Socket.io, WebRTC, PostgreSQL, MongoDB, AWS, Docker, ReactJS, React Native | [GitHub Repo](https://github.com/tcminh1405/OTT_EducationProject) |
-| **🌟 Tran Cong Minh Portfolio** | Personal Web | Interactive 3D universe canvas, 360° rotatable 3D planet with mouse/touch drag, Framer Motion animations, Next.js Server Actions & Resend email API. | Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js, Framer Motion, Resend | [Live Demo](https://www.tcminh1405.id.vn/)<br>[GitHub Repo](https://github.com/tcminh1405/trancongminh-portfolio) |
+| **TechShop** | E-Commerce | Distributed Microservices platform (11 services) with Kafka KRaft event-driven architecture, Outbox & Saga pattern, Redis caching & Nginx (stress-tested at 12k req/s). | Java 17, Spring Boot, Spring Cloud, Kafka, Redis, MySQL, Docker, Nginx, Grafana k6, ReactJS | [GitHub Repo](https://github.com/tcminh1405/TechShopProject) |
+| **Real-Time Messaging** | Communication | Enterprise messaging & WebRTC video call ecosystem with Socket.io duplex messaging, polyglot persistence (PostgreSQL & MongoDB), Web & Mobile. | Node.js, TypeScript, Socket.io, WebRTC, PostgreSQL, MongoDB, AWS, Docker, ReactJS, React Native | [GitHub Repo](https://github.com/tcminh1405/OTT_EducationProject) |
+| **Tran Cong Minh Portfolio** | Personal Web | Interactive 3D universe canvas, Three.js starlight particles, Framer Motion sliding pill, CounterAPI global analytics, Next.js Server Actions & Resend email API. | Next.js 16, React 19, TypeScript, Tailwind CSS v4, Three.js, Framer Motion, Resend | [Live Demo](https://www.tcminh1405.id.vn/)<br>[GitHub Repo](https://github.com/tcminh1405/trancongminh-portfolio) |
 
 ---
 
-## 📁 Project Architecture
+## 📁 Architecture & Folder Structure
 
 ```text
 trancongminh-portfolio/
@@ -86,20 +89,19 @@ trancongminh-portfolio/
 ├── src/
 │   ├── app/
 │   │   ├── actions/         # Contact form Server Actions (contact.ts)
-│   │   ├── globals.css      # Custom styling & CSS variables
+│   │   ├── globals.css      # Custom design system & animations
 │   │   ├── layout.tsx       # Root layout & providers
 │   │   └── page.tsx         # Main portfolio page
 │   ├── components/
 │   │   ├── layout/          # Header, Footer, ThemeProvider, ClientOnly
 │   │   ├── sections/        # Hero, About, Skills, Experience, Projects, Contact
-│   │   └── ui/              # Buttons, Cards, Badges, ThreeBackground, ScrollToTop
-│   ├── data/                # Portfolio datasets (personal, skills, projects, experience)
-│   ├── hooks/               # Custom React hooks (useMounted)
+    │   └── ui/              # Buttons, Logo, ThreeBackground, Typewriter, ScrollToTop
+│   ├── data/                # Datasets (personal, skills, projects, experience)
+│   ├── hooks/               # Custom React hooks (useMounted, useIsMobile)
 │   ├── lib/                 # Utility functions & Zod validations
-│   └── types/               # TypeScript interfaces & types
-├── vitest.config.ts         # Vitest test runner configuration
+│   └── types/               # TypeScript type definitions
+├── vitest.config.ts         # Vitest test configuration
 ├── next.config.ts           # Next.js configuration
-├── tailwind.config.ts       # Tailwind CSS configuration
 └── tsconfig.json            # TypeScript compiler configuration
 ```
 
@@ -137,21 +139,21 @@ trancongminh-portfolio/
 
 ---
 
-## 🧪 Testing
+## 🧪 Testing & Build
 
-Run the Vitest unit tests:
+Run the Vitest unit test suite:
 ```bash
 npm run test
 ```
 
-Build for production:
+Create an optimized production build:
 ```bash
 npm run build
 ```
 
 ---
 
-## 📬 Contact
+## 📬 Contact & Connect
 
 Have a project in mind or want to collaborate?
 - **Website**: [tcminh1405.id.vn](https://www.tcminh1405.id.vn/)
