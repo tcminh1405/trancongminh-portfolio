@@ -682,19 +682,13 @@ html:not(.dark) .nav-item-link:hover {
   border-color: rgba(14, 165, 233, 0.3) !important;
 }
 
-/* Active state: Signature Web Blue Gradient Pill */
+/* Active state: Handled smoothly by Framer Motion layoutId pill */
 .nav-item-link.is-active {
   color: #ffffff !important;
-  background: linear-gradient(135deg, #155dfc 0%, #488bfb 100%) !important;
-  border-color: rgba(72, 139, 251, 0.6) !important;
-  box-shadow: 0 4px 15px rgba(72, 139, 251, 0.4) !important;
 }
 
 html:not(.dark) .nav-item-link.is-active {
   color: #ffffff !important;
-  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
-  border-color: rgba(37, 99, 235, 0.5) !important;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35) !important;
 }
 
 /* Mobile Drawer Links Hover & Active */

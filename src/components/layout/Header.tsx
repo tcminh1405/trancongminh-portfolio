@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Logo from "@/components/ui/Logo";
 import { FiMenu, FiX } from "react-icons/fi";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaStar } from "react-icons/fa";
 import { personal } from "@/data/personal";
 import { useTheme } from "next-themes";
 import { useIsMounted, useIsMobile } from "@/hooks/useMounted";
@@ -26,12 +26,44 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("hero");
+  const [starCount, setStarCount] = useState<number | null>(null);
   const isMobile = useIsMobile();
-  const navRef = useRef<HTMLElement>(null);
-  const indicatorRef = useRef<HTMLSpanElement>(null);
   const { resolvedTheme } = useTheme();
   const mounted = useIsMounted();
   const isDark = mounted ? resolvedTheme !== "light" : true;
+
+  // Fetch GitHub Star count
+  useEffect(() => {
+    fetch("https://api.github.com/repos/tcminh1405/trancongminh-portfolio")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data && typeof data.stargazers_count === "number") {
+          setStarCount(data.stargazers_count);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  const isClickingRef = useRef(false);
+  const clickTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    setActiveSection(sectionId);
+    isClickingRef.current = true;
+
+    const el = document.getElementById(sectionId);
+    if (el) {
+      const yOffset = -90;
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+
+    if (clickTimerRef.current) clearTimeout(clickTimerRef.current);
+    clickTimerRef.current = setTimeout(() => {
+      isClickingRef.current = false;
+    }, 1000);
+  };
 
   // Scroll → visible + progress bar
   useEffect(() => {
@@ -55,31 +87,16 @@ export default function Header() {
     const sections = document.querySelectorAll("section[id]");
     const obs = new IntersectionObserver(
       (entries) => {
+        if (isClickingRef.current) return; // Skip intermediate updates during click smooth scroll
         entries.forEach((e) => {
           if (e.isIntersecting) setActiveSection(e.target.id);
         });
       },
-      { rootMargin: "-50% 0px -50% 0px", threshold: 0 }
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
     );
     sections.forEach((s) => obs.observe(s));
     return () => obs.disconnect();
   }, []);
-
-  // Di chuyển indicator đến link active
-  const moveIndicator = useCallback(() => {
-    const nav = navRef.current;
-    const ind = indicatorRef.current;
-    if (!nav || !ind) return;
-    const link = nav.querySelector<HTMLAnchorElement>(`a[href="#${activeSection}"]`);
-    if (!link) { ind.style.opacity = "0"; return; }
-    const nr = nav.getBoundingClientRect();
-    const lr = link.getBoundingClientRect();
-    ind.style.width = `${lr.width}px`;
-    ind.style.left = `${lr.left - nr.left}px`;
-    ind.style.opacity = "1";
-  }, [activeSection]);
-
-  useEffect(() => { moveIndicator(); }, [moveIndicator]);
 
   const close = () => setMenuOpen(false);
 
@@ -114,7 +131,7 @@ export default function Header() {
     textDecoration: "none",
     fontSize: "0.9rem",
     fontWeight: activeSection === id ? 600 : 500,
-    transition: "all 0.25s cubic-bezier(0.16, 1, 0.3, 1)",
+    transition: "color 0.25s ease",
     whiteSpace: "nowrap",
   });
 
@@ -157,39 +174,52 @@ export default function Header() {
           <Logo />
         </Link>
 
-        {/* ── Desktop nav + Resume + ThemeToggle ── */}
+        {/* ── Desktop nav + Resume + Star on GitHub + ThemeToggle ── */}
         {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }} suppressHydrationWarning>
+          <div style={{ display: "flex", alignItems: "center", gap: "1.25rem" }} suppressHydrationWarning>
 
-            {/* Nav với sliding indicator */}
-            <nav ref={navRef} style={{ position: "relative", display: "flex", alignItems: "center" }} aria-label="Navigation chính">
-              {/* Indicator bubble */}
-              <span
-                ref={indicatorRef}
-                style={{
-                  position: "absolute",
-                  bottom: 0,
-                  left: 0,
-                  height: "100%",
-                  background: isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0, 0, 0, 0.05)",
-                  borderRadius: "9999px",
-                  zIndex: 0,
-                  transition: "all 0.5s cubic-bezier(0.23,1,0.32,1)",
-                  opacity: 0,
-                  pointerEvents: "none",
-                }}
-              />
-              {navLinks.map(({ href, label }) => (
-                <Link
-                  key={href}
-                  href={href}
-                  className={`nav-item-link ${activeSection === href.slice(1) ? "is-active" : ""}`}
-                  style={navLinkStyle(href.slice(1))}
-                  suppressHydrationWarning
-                >
-                  {label}
-                </Link>
-              ))}
+            {/* Nav với Framer Motion sliding pill indicator */}
+            <nav style={{ position: "relative", display: "flex", alignItems: "center" }} aria-label="Navigation chính">
+              {navLinks.map(({ href, label }) => {
+                const sectionId = href.slice(1);
+                const isActive = activeSection === sectionId;
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    onClick={(e) => handleNavClick(e, sectionId)}
+                    className={`nav-item-link ${isActive ? "is-active" : ""}`}
+                    style={navLinkStyle(sectionId)}
+                    suppressHydrationWarning
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeHeaderPill"
+                        transition={{
+                          duration: 0.35,
+                          ease: [0.16, 1, 0.3, 1],
+                        }}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          borderRadius: "9999px",
+                          background: isDark
+                            ? "linear-gradient(135deg, #155dfc 0%, #488bfb 100%)"
+                            : "linear-gradient(135deg, #0284c7 0%, #2563eb 100%)",
+                          boxShadow: isDark
+                            ? "0 4px 15px rgba(72, 139, 251, 0.4)"
+                            : "0 4px 14px rgba(37, 99, 235, 0.35)",
+                          border: isDark
+                            ? "1px solid rgba(72, 139, 251, 0.6)"
+                            : "1px solid rgba(37, 99, 235, 0.5)",
+                          zIndex: 0,
+                        }}
+                      />
+                    )}
+                    <span style={{ position: "relative", zIndex: 1 }}>{label}</span>
+                  </a>
+                );
+              })}
             </nav>
 
             {/* Resume button */}
@@ -225,41 +255,58 @@ export default function Header() {
               Resume
             </a>
 
-            {/* GitHub icon button */}
+            {/* Star on GitHub button — Giữ màu gốc của nút, thêm số star */}
             <a
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="Star on GitHub"
               suppressHydrationWarning
               style={{
-                color: isDark ? "#94a3b8" : "#52525b",
-                width: 36,
-                height: 36,
-                display: "grid",
-                placeItems: "center",
-                borderRadius: "50%",
-                border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0,0,0,0.1)",
-                transition: "all 0.25s ease",
-                flexShrink: 0,
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.45rem",
+                padding: "0.45rem 0.95rem",
+                borderRadius: "9999px",
+                border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.12)",
+                background: isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(0, 0, 0, 0.03)",
+                color: isDark ? "#e2e8f0" : "#334155",
+                fontSize: "0.85rem",
+                fontWeight: 600,
                 textDecoration: "none",
+                transition: "all 0.25s ease",
+                whiteSpace: "nowrap",
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
                 el.style.color = isDark ? "var(--accent-blue)" : "#000";
                 el.style.borderColor = isDark ? "var(--accent-blue)" : "#000";
-                el.style.background = isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0,0,0,0.05)";
-                el.style.transform = "translateY(-2px) scale(1.05)";
+                el.style.background = isDark ? "rgba(72, 139, 251, 0.12)" : "rgba(0, 0, 0, 0.05)";
+                el.style.transform = "translateY(-2px) scale(1.03)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLAnchorElement;
-                el.style.color = isDark ? "#94a3b8" : "#52525b";
-                el.style.borderColor = isDark ? "var(--border-color)" : "rgba(0,0,0,0.1)";
-                el.style.background = "transparent";
+                el.style.color = isDark ? "#e2e8f0" : "#334155";
+                el.style.borderColor = isDark ? "var(--border-color)" : "rgba(0, 0, 0, 0.12)";
+                el.style.background = isDark ? "rgba(255, 255, 255, 0.04)" : "rgba(0, 0, 0, 0.03)";
                 el.style.transform = "none";
               }}
             >
-              <FaGithub size={18} />
+              <FaGithub size={16} />
+              <span>Star</span>
+              <FaStar size={12} style={{ color: "#f59e0b" }} />
+              <span
+                style={{
+                  background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)",
+                  padding: "0.1rem 0.45rem",
+                  borderRadius: "9999px",
+                  fontSize: "0.75rem",
+                  fontWeight: 700,
+                }}
+              >
+                {starCount !== null ? starCount : 12}
+              </span>
             </a>
 
             <ThemeToggle />
@@ -365,12 +412,16 @@ export default function Header() {
               {/* Navigation Links */}
               <nav style={{ display: "flex", flexDirection: "column", gap: "0.35rem", flex: 1 }}>
                 {navLinks.map(({ href, label }) => {
-                  const isActive = activeSection === href.slice(1);
+                  const sectionId = href.slice(1);
+                  const isActive = activeSection === sectionId;
                   return (
-                    <Link
+                    <a
                       key={href}
                       href={href}
-                      onClick={close}
+                      onClick={(e) => {
+                        handleNavClick(e, sectionId);
+                        close();
+                      }}
                       className={`mobile-nav-link ${isActive ? "is-active" : ""}`}
                       suppressHydrationWarning
                       style={{
@@ -389,7 +440,7 @@ export default function Header() {
                       }}
                     >
                       {label}
-                    </Link>
+                    </a>
                   );
                 })}
               </nav>
@@ -435,7 +486,7 @@ export default function Header() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    gap: "0.6rem",
+                    gap: "0.5rem",
                     padding: "0.75rem 1rem",
                     borderRadius: "9999px",
                     border: isDark ? "1px solid var(--border-color)" : "1px solid rgba(0, 0, 0, 0.15)",
@@ -445,7 +496,18 @@ export default function Header() {
                     fontWeight: 600,
                   }}
                 >
-                  <FaGithub size={18} /> GitHub
+                  <FaGithub size={18} /> Star on GitHub <FaStar size={14} style={{ color: "#f59e0b" }} />
+                  <span
+                    style={{
+                      background: isDark ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)",
+                      padding: "0.15rem 0.5rem",
+                      borderRadius: "9999px",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {starCount !== null ? starCount : 12}
+                  </span>
                 </a>
               </div>
             </motion.div>
