@@ -1,13 +1,15 @@
 "use client";
 
-import { useTheme } from "next-themes";
-import { useIsMounted } from "@/hooks/useMounted";
+import { useId } from "react";
 
 export default function Logo({ className }: { className?: string }) {
-  const { resolvedTheme } = useTheme();
-  const mounted = useIsMounted();
+  const rawId = useId();
+  const uid = rawId.replace(/[^a-zA-Z0-9_-]/g, "");
 
-  const isDark = mounted ? resolvedTheme !== "light" : true;
+  const blueGradId = `logoBlueGrad_${uid}`;
+  const hoverGradId = `logoHoverGrad_${uid}`;
+  const silverGradId = `logoSilverGrad_${uid}`;
+  const blackGradId = `logoBlackGrad_${uid}`;
 
   return (
     <svg
@@ -17,20 +19,20 @@ export default function Logo({ className }: { className?: string }) {
       className={`logo-svg ${className || ''}`}
     >
       <defs>
-        <linearGradient id="logoBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={blueGradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#38bdf8" />
           <stop offset="100%" stopColor="#2563eb" />
         </linearGradient>
-        <linearGradient id="logoHoverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={hoverGradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#60a5fa" />
           <stop offset="50%" stopColor="#38bdf8" />
           <stop offset="100%" stopColor="#a855f7" />
         </linearGradient>
-        <linearGradient id="logoSilverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={silverGradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#ffffff" />
           <stop offset="100%" stopColor="#cbd5e1" />
         </linearGradient>
-        <linearGradient id="logoBlackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={blackGradId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#1e293b" />
           <stop offset="100%" stopColor="#0f172a" />
         </linearGradient>
@@ -45,31 +47,43 @@ export default function Logo({ className }: { className?: string }) {
             filter: drop-shadow(0 0 12px rgba(56, 189, 248, 0.5));
           }
           .name-text {
-            fill: ${isDark ? 'url(#logoSilverGrad)' : 'url(#logoBlackGrad)'};
+            fill: url(#${silverGradId});
             transition: fill 0.35s ease, opacity 0.35s ease;
           }
+          html:not(.dark) .name-text {
+            fill: url(#${blackGradId}) !important;
+          }
+          html.dark .name-text {
+            fill: url(#${silverGradId}) !important;
+          }
           .logo-svg:hover .name-text {
-            fill: url(#logoHoverGrad);
+            fill: url(#${hoverGradId}) !important;
           }
           .tech-accent {
-            stroke: url(#logoBlueGrad);
+            stroke: url(#${blueGradId});
             stroke-linecap: round;
             stroke-linejoin: round;
             fill: none;
             transition: stroke 0.35s ease, opacity 0.35s ease;
           }
           .logo-svg:hover .tech-accent {
-            stroke: ${isDark ? '#60a5fa' : '#2563eb'};
+            stroke: #2563eb;
+          }
+          html.dark .logo-svg:hover .tech-accent {
+            stroke: #60a5fa;
           }
           .tech-dot {
-            fill: url(#logoBlueGrad);
+            fill: url(#${blueGradId});
             transition: fill 0.35s ease, transform 0.35s ease;
           }
           .logo-svg:hover .tech-dot {
-            fill: ${isDark ? '#ffffff' : '#0284c7'};
+            fill: #0284c7;
+          }
+          html.dark .logo-svg:hover .tech-dot {
+            fill: #ffffff;
           }
           .portfolio-text {
-            fill: url(#logoBlueGrad);
+            fill: url(#${blueGradId});
             font-family: 'Montserrat', 'Inter', system-ui, sans-serif;
             font-size: 26px;
             font-weight: 800;
@@ -77,7 +91,10 @@ export default function Logo({ className }: { className?: string }) {
             transition: fill 0.35s ease;
           }
           .logo-svg:hover .portfolio-text {
-            fill: ${isDark ? '#ffffff' : '#0284c7'};
+            fill: #0284c7;
+          }
+          html.dark .logo-svg:hover .portfolio-text {
+            fill: #ffffff;
           }
         `}
       </style>

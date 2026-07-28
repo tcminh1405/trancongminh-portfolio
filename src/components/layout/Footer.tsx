@@ -54,8 +54,8 @@ export default function Footer() {
   useEffect(() => {
     if (!mounted) return;
     const timer = setTimeout(() => {
-      // 1. Fetch & increment global page views
-      fetch("https://api.counterapi.dev/v1/trancongminh-portfolio/pageviews/up")
+      // 1. Fetch & increment global page views (proxied to avoid CORS)
+      fetch("/api/counter/pageviews")
         .then((res) => (res.ok ? res.json() : null))
         .then((data) => {
           if (data && typeof data.count === "number") {
@@ -64,11 +64,11 @@ export default function Footer() {
         })
         .catch(() => {});
 
-      // 3. Fetch & increment global visits (unique per session)
+      // 2. Fetch & increment global visits — unique per session (proxied to avoid CORS)
       const isNewSession = !sessionStorage.getItem("portfolio_global_session");
       const visitUrl = isNewSession
-        ? "https://api.counterapi.dev/v1/trancongminh-portfolio/visits/up"
-        : "https://api.counterapi.dev/v1/trancongminh-portfolio/visits";
+        ? "/api/counter/visits?increment=true"
+        : "/api/counter/visits";
 
       if (isNewSession) {
         sessionStorage.setItem("portfolio_global_session", "true");
